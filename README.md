@@ -1,13 +1,10 @@
 # Description
 ![Static Badge](https://img.shields.io/badge/Language-Bicep-blue) ![Static Badge](https://img.shields.io/badge/Status-working-green)  ![Static Badge](https://img.shields.io/badge/Scope-subscription-peru) 
 
-The bicep name generator provides four different name patterns to generate resource names. Each pattern consists of a generic and a special name, where in the special name hyphens are excluded. 
+To conform to the 'Shared variable file pattern' development model, 'bicep-tools' provides a set of user defined functions, data types and library files threw a shared bicep file, which are used in main templates with the *import* function. These functions and data types are used to simplify the creation of resource names according to various schemes. It includes four different name patterns to generate resource names and patternless names for policy definitions and assignments. Each pattern consists of a generic and a special name, where in the special name hyphens are excluded.
 
-Each module in which the functions are to be used, must first import them from the 'shared.bicep' file.
-```bicep
-import * as lib from 'shared.bicep'
-```
-In 'shared.bicep' the library files are imported as variables and need to be used in the modules for name generation.
+
+The library files are imported in 'shared.bicep' as variables which are used in the modules for name generation.
 ```bicep
 @export()
 var resourceTypeAbbreviationList = loadYamlContent('../lib/resourceTypeAbbreviations.yaml')
@@ -28,7 +25,17 @@ type resourceName = {
   sequenceNumber: string?
 }
 ```
-# Example
+
+```bicep
+
+```
+
+
+# Usage
+Import all functions, vairables and data types from 'shared.bicep'.
+```bicep
+import * as lib from 'shared.bicep'
+```
 Input values for name generation in 'testResourceName' are defined with the type for resource names. The properties 'testResourceName.resourceType', 'testResourceName.locationAbbreviation' and 'testResourceName.environmentAbbreviation' are accessing the library files threw shared varibles. 
 - The value for 'testResourceName.resourceType' uses the 'lib.resourceTypeAbbreviationList.resourceGroup' property, whereby 'lib.resourceTypeAbbreviationList.*resourceGroup*' needs user input to decide which resource type appeviation is used.
 - The value for 'testResourceName.locationAbbreviation' uses properties of environmental parameters, provided by the parameter file 'main.bicepparam'. Value is then compared with the values in the library files to choose the right abbreviation.
@@ -36,7 +43,7 @@ Input values for name generation in 'testResourceName' are defined with the type
 ```bicep
 @description('Input for resource tags.')
 param testResourceTags lib.resourceTag = {
-  applicationName: 'Test application'
+  applicationName: 'Bicep Tools'
   businessCriticality: 'Low'
   costCenter: '0000'
   creator: deploymentParameter.creator
@@ -48,14 +55,14 @@ param testResourceTags lib.resourceTag = {
 @description('Input for resource name.')
 param testResourceName lib.resourceName = {
   customerAbbreviation: deploymentParameter.customerAbbreviation
-  nameAbbreviation: 'testapp'
+  nameAbbreviation: 'bcptls'
   resourceType: lib.resourceTypeAbbreviationList.resourceGroup
   locationAbbreviation: lib.regionAbbreviationList[deploymentParameter.location]
   environmentAbbreviation: lib.environmentAbbreviationList[testResourceTags.environment]
   sequenceNumber: '001'
 }
 ```
-***
+# Examples
 Output generation in 'main.bicep'.
 ```bicep
 output names object = {
@@ -90,20 +97,20 @@ Output values after deployment.
 ```json
 {
     "default1": {
-        "generic": "rg-testapp-euw-001",
-        "special": "rg-testapp-euw-001"
+        "generic": "rg-bcptls-euw-001",
+        "special": "rgbcptlseuw001"
     },
     "default2": {
-        "generic": "rg-testapp-euw-dev-001",
-        "special": "rgtestappeuwdev001"
+        "generic": "rg-bcptls-euw-dev-001",
+        "special": "rgbcptlseuwdev001"
     },
     "extended1": {
-        "generic": "gate-rg-testapp-euw-001",
-        "special": "gatergtestappeuw001"
+        "generic": "gate-rg-bcptls-euw-001",
+        "special": "gatergbcptlseuw001"
     },
     "extended2": {
-        "generic": "gate-rg-testapp-euw-dev-001",
-        "special": "gatergtestappeuwdev001"
+        "generic": "gate-rg-bcptls-euw-dev-001",
+        "special": "gatergbcptlseuwdev001"
     },
     "policy1": {
         "policyDefinition": "pd-7238a963-b977-535c",

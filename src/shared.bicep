@@ -67,7 +67,7 @@ func selectNamePattern(nameValue object, patternValue pattern) string =>
 
 func selectNamePatternSpecial(nameValue object, patternValue pattern) string =>
   contains(patternValue, 'default1')
-    ? setNamePatternDefault1(nameValue)
+    ? setNamePatternDefault1Special(nameValue)
     : contains(patternValue, 'default2')
         ? setNamePatternDefault2Special(nameValue)
         : contains(patternValue, 'extended1')
@@ -96,12 +96,12 @@ func newNameDefault1(nameValue object) object => {
         nameValue.nameAbbreviation,
         nameValue.locationAbbreviation,
         nameValue.sequenceNumber
-      )
-    : format('{0}-{1}-{2}', 
-    nameValue.resourceType, 
-    nameValue.nameAbbreviation, 
-    nameValue.locationAbbreviation
-    ))
+        )
+        : format('{0}-{1}-{2}', 
+        nameValue.resourceType, 
+        nameValue.nameAbbreviation, 
+        nameValue.locationAbbreviation
+        ))
   special: toLower(contains(nameValue, 'sequenceNumber')
     ? format(
         '{0}{1}{2}{3}',
@@ -110,11 +110,11 @@ func newNameDefault1(nameValue object) object => {
         nameValue.locationAbbreviation,
         nameValue.sequenceNumber
       )
-    : format('{0}{1}{2}', 
-    nameValue.resourceType, 
-    nameValue.nameAbbreviation, 
-    nameValue.locationAbbreviation
-    ))
+        : format('{0}{1}{2}', 
+        nameValue.resourceType, 
+        nameValue.nameAbbreviation, 
+        nameValue.locationAbbreviation
+        ))
 }
 
 @export()

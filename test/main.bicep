@@ -4,7 +4,7 @@ metadata repository = 'https://github.com/r-wbr/bicep-namegen'
 targetScope = 'subscription'
 
 // Shared bicep should be imported as 'lib' namespace.
-import * as lib from 'shared.bicep'
+import * as lib from '../src/shared.bicep'
 
 // Initiate import for main and child modules
 @description('Define parameters to import from deployment.')

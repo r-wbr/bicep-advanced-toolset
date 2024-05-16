@@ -10,11 +10,11 @@ import * as lib from 'shared.bicep'
 In 'shared.bicep' the library files are imported as variables and need to be used in the modules for name generation.
 ```bicep
 @export()
-var resourceTypeAbbreviationList = loadYamlContent('resourceTypeAbbreviations.yaml')
+var resourceTypeAbbreviationList = loadYamlContent('../lib/resourceTypeAbbreviations.yaml')
 @export()
-var regionAbbreviationList = loadYamlContent('regionAbbreviations.yaml')
+var regionAbbreviationList = loadYamlContent('../lib/regionAbbreviations.yaml')
 @export()
-var environmentAbbreviationList = loadYamlContent('environmentAbbreviations.yaml')
+var environmentAbbreviationList = loadYamlContent('../lib/environmentAbbreviations.yaml')
 ```
 The custom type 'resourceName' defines the values which are needed for name generation of a resource. If the property 'sequenceNumber' is not *null*, the value will be used for name generation.
 ```bicep

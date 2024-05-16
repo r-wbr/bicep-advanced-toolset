@@ -1,0 +1,4 @@
+Production: prod
+Staging: stg
+Test: test
+Development: dev

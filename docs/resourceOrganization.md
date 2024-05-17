@@ -3,10 +3,10 @@ The naming of all objects follows the guidelines defined in this section. Each d
 
 ## Resource groups
 Resource containers of type resource group use the {Prefix} 'rg'.
-1. The name of a resource group is composed of the affixes {CustomerId}?, {Prefix}, {Name}, {Region}, {Environment}?, {Suffix}? in this order. Name sections are divided by hyphens.
+1. The name of a resource group is composed of the affixes {Customer}?, {Prefix}, {Name}, {Region}, {Environment}?, {Suffix}? in this order. Name sections are divided by hyphens.
 2. Resource groups always need a unambiguous, unique name.
 3. The uniqueness of the name is represented by the section {Suffix}, or {Name}.
-4. The name can be exntended with the {CustomerId} affix, which includes a appreviation of the customer name. These extension is optional.
+4. The name can be exntended with the {Customer} affix, which includes a appreviation of the customer name. These extension is optional.
 5. The environment in which the resources are located can be included in the name with the affix {Environment}. These affix is optional.
 6. The {Suffix} affix can add additional information if this resource group relates to specific services, like Azure Kubernetes Service or Azure Backup.
 7. If the deployment of multiple iterations is needed, the {Suffix} is used to define iterations. A sequential number is used to determine the individual iterations, starting with '001'.
@@ -29,11 +29,11 @@ When deploying Azure Backup use the following values on the {Suffix} affix:
 
 ## Subscriptions
 Resource containers of type subscription use the {Prefix} 'sub'.
-1. The name of a subscription is composed of the affixes {CustomerId}?, {Prefix}, {Name}, {Suffix}? in this order. Name sections are divided by hyphens.
+1. The name of a subscription is composed of the affixes {Customer}?, {Prefix}, {Name}, {Suffix}? in this order. Name sections are divided by hyphens.
 2. Subscriptions always require a unambiguous, unique name.
 3. The uniqueness of the name is represented by the section {Name}.
 4. Subscriptions can have the {Suffix} section, which can be used as a simple sequential number or decimal classification system.
-5. The name can be exntended with the {CustomerId} affix, which includes a appreviation of the customer name. These extension is optional.
+5. The name can be exntended with the {Customer} affix, which includes a appreviation of the customer name. These extension is optional.
 
 ## Resources
 For resources, an abbreviated prefix is formed based on their resource type. These prefixes are listed in a separate file. The formation of the name for a resource must be carried out according to the following guidelines:

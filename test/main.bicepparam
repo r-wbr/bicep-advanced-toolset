@@ -1,9 +1,9 @@
 using './main.bicep'
 
-param deploymentParameter = {
+param deploymentParameters = {
   location: 'westeurope'
   creator: ''
-  customerAbbreviation: ''
-  customerOrganization: ''
-  namePattern: 'default1'
+  organization: ''
+  customer: ''
+  naming: 'default1'
 }

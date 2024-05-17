@@ -9,15 +9,15 @@ import * as lib from '../src/shared.bicep'
 // Initiate import for main and child modules
 @description('Define parameters to import from deployment.')
 param deploymentTimestamp string = utcNow('dd.MM.yyyy')
-param deploymentParameter lib.import
+param deploymentParameters lib.deploymentParameters
 
 // Define object for resource deployment in main module
 @description('Input for resource tags.')
-param testResourceTags lib.resourceTag = {
+param testResourceTags lib.resourceTags = {
   applicationName: 'Test application'
   businessCriticality: 'Low'
   costCenter: '0000'
-  creator: deploymentParameter.creator
+  creator: deploymentParameters.creator
   dataClassification: 'Highly confidential'
   deploymentDate: deploymentTimestamp
   environment: 'Development'
@@ -26,12 +26,12 @@ param testResourceTags lib.resourceTag = {
 
 @description('Input for resource name.')
 param testResourceName lib.resourceName = {
-  customerAbbreviation: deploymentParameter.customerAbbreviation
-  nameAbbreviation: 'testapp'
-  resourceType: lib.resourceTypeAbbreviationList.resourceGroup
-  locationAbbreviation: lib.regionAbbreviationList[deploymentParameter.location]
-  environmentAbbreviation: lib.environmentAbbreviationList[testResourceTags.environment]
-  sequenceNumber: '001'
+  customer: deploymentParameters.customer
+  prefix: 'testapp'
+  name: lib.resourceTypeAbbreviationList.resourceGroup
+  region: lib.regionAbbreviationList[deploymentParameters.location]
+  environment: lib.environmentAbbreviationList[testResourceTags.environment]
+  suffix: '001'
 }
 
 output names object = {

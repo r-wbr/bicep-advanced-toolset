@@ -27,11 +27,16 @@ param testResourceTags lib.resourceTags = {
 @description('Input for resource name.')
 param testResourceName lib.resourceName = {
   customer: deploymentParameters.customer
-  prefix: 'testapp'
-  name: lib.resourceTypeAbbreviationList.resourceGroup
+  prefix: lib.resourceTypeAbbreviationList.resourceGroup
+  name: 'testapp'
   region: lib.regionAbbreviationList[deploymentParameters.location]
   environment: lib.environmentAbbreviationList[testResourceTags.environment]
   suffix: '001'
+}
+
+resource testResourceGroup 'Microsoft.Resources/resourceGroups@2024-03-01' = {
+  name: lib.newResourceName(testResourceName, deploymentParameters.namePattern)
+  location: deploymentParameters.location
 }
 
 output names object = {

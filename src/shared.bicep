@@ -34,7 +34,7 @@ type deploymentParameters = {
   customer: string
   creator: string
   @description('Name pattern for deployed resources.')
-  naming: environmentTypes.namePattern
+  namePattern: environmentTypes.namePattern
 }
 
 @export()
@@ -73,12 +73,12 @@ func newPolicyDefinitionName(guidValue string) string => 'pd-${substring(guid(gu
 func newPolicyAssignmentName(guidValue string) string => 'pa-${substring(guid(guidValue), 0, 18)}'
 
 @export()
-func newResourceName(nameValue object, patternValue environmentTypes.namePattern) string => selectNamePattern(nameValue, patternValue)
+func newResourceName(nameValue resourceName, patternValue environmentTypes.namePattern) string => selectNamePattern(nameValue, patternValue)
 
 @export()
-func newSpecialResourceName(nameValue object, patternValue environmentTypes.namePattern) string => selectNamePatternSpecial(nameValue, patternValue)
+func newSpecialResourceName(nameValue resourceName, patternValue environmentTypes.namePattern) string => selectNamePatternSpecial(nameValue, patternValue)
 
-func selectNamePattern(nameValue object, patternValue environmentTypes.namePattern) string =>
+func selectNamePattern(nameValue resourceName, patternValue environmentTypes.namePattern) string =>
   contains(patternValue, 'default1')
     ? setNamePatternDefault1(nameValue)
     : contains(patternValue, 'default2')
@@ -87,7 +87,7 @@ func selectNamePattern(nameValue object, patternValue environmentTypes.namePatte
             ? setNamePatternExtended1(nameValue) 
             : setNamePatternExtended2(nameValue)
 
-func selectNamePatternSpecial(nameValue object, patternValue environmentTypes.namePattern) string =>
+func selectNamePatternSpecial(nameValue resourceName, patternValue environmentTypes.namePattern) string =>
   contains(patternValue, 'default1')
     ? setNamePatternDefault1Special(nameValue)
     : contains(patternValue, 'default2')
@@ -96,21 +96,21 @@ func selectNamePatternSpecial(nameValue object, patternValue environmentTypes.na
             ? setNamePatternExtended1Special(nameValue)
             : setNamePatternExtended2Special(nameValue)
 
-func setNamePatternDefault1(nameValue object) string => newNameDefault1(nameValue).generic
-func setNamePatternDefault1Special(nameValue object) string => newNameDefault1(nameValue).special
+func setNamePatternDefault1(nameValue resourceName) string => newNameDefault1(nameValue).generic
+func setNamePatternDefault1Special(nameValue resourceName) string => newNameDefault1(nameValue).special
 
-func setNamePatternDefault2(nameValue object) string => newNameDefault2(nameValue).generic
-func setNamePatternDefault2Special(nameValue object) string =>
+func setNamePatternDefault2(nameValue resourceName) string => newNameDefault2(nameValue).generic
+func setNamePatternDefault2Special(nameValue resourceName) string =>
   newNameDefault2(nameValue).special
 
-func setNamePatternExtended1(nameValue object) string => newNameExtended1(nameValue).generic
-func setNamePatternExtended1Special(nameValue object) string => newNameExtended1(nameValue).special
+func setNamePatternExtended1(nameValue resourceName) string => newNameExtended1(nameValue).generic
+func setNamePatternExtended1Special(nameValue resourceName) string => newNameExtended1(nameValue).special
 
-func setNamePatternExtended2(nameValue object) string => newNameExtended2(nameValue).generic
-func setNamePatternExtended2Special(nameValue object) string =>
+func setNamePatternExtended2(nameValue resourceName) string => newNameExtended2(nameValue).generic
+func setNamePatternExtended2Special(nameValue resourceName) string =>
   newNameExtended2(nameValue).special
 
-func newNameDefault1(nameValue object) object => {
+func newNameDefault1(nameValue resourceName) object => {
   generic: toLower(contains(nameValue, 'suffix')
     ? format(
         '{0}-{1}-{2}-{3}',
@@ -140,7 +140,7 @@ func newNameDefault1(nameValue object) object => {
 }
 
 @export()
-func newNameDefault2(nameValue object) object => {
+func newNameDefault2(nameValue resourceName) object => {
   generic: toLower(contains(nameValue, 'suffix')
     ? format(
         '{0}-{1}-{2}-{3}-{4}',
@@ -175,7 +175,7 @@ func newNameDefault2(nameValue object) object => {
       ))
 }
 
-func newNameExtended1(nameValue object) object => {
+func newNameExtended1(nameValue resourceName) object => {
   generic: toLower(contains(nameValue, 'suffix')
     ? format(
         '{0}-{1}-{2}-{3}-{4}',
@@ -210,7 +210,7 @@ func newNameExtended1(nameValue object) object => {
       ))
 }
 
-func newNameExtended2(nameValue object) object => {
+func newNameExtended2(nameValue resourceName) object => {
   generic: toLower(contains(nameValue, 'suffix')
     ? format(
         '{0}-{1}-{2}-{3}-{4}-{5}',

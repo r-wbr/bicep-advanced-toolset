@@ -3,7 +3,7 @@ using './main.bicep'
 param deploymentParameters = {
   location: 'westeurope'
   creator: ''
-  organization: ''
-  customer: ''
-  naming: 'default1'
+  organization: 'FooBar Inc'
+  customer: 'foo'
+  namePattern: 'default1'
 }

@@ -1,12 +1,6 @@
 # Guidelines for resource organization
 The naming of all objects follows the guidelines defined in this section. Each directory object, resource container, and resource object is identified by a predefined prefix. The prefix is followed by several sections divided by a hyphen. The naming is always done in English and in lowercase.
 
-## Resource container
-Resource containers are subscriptions or resource groups. Resource containers of type resource group use the prefix 'rg'. Subscription resource containers use the 'sub' prefix.
-
-> [!NOTE]  
-> The creation of a new resource group should only be allowed if all enforced tags exist on the resource group during deployment!
-
 ## Resource groups
 Resource containers of type resource group use the {Prefix} 'rg'.
 1. The name of a resource group is composed of the affixes {CustomerId}?, {Prefix}, {Name}, {Region}, {Environment}?, {Suffix}? in this order. Name sections are divided by hyphens.
@@ -38,11 +32,8 @@ Resource containers of type subscription use the {Prefix} 'sub'.
 1. The name of a subscription is composed of the affixes {CustomerId}?, {Prefix}, {Name}, {Suffix}? in this order. Name sections are divided by hyphens.
 2. Subscriptions always require a unambiguous, unique name.
 3. The uniqueness of the name is represented by the section {Name}.
-4. Subscriptions can have the {Suffix} section, regardless of the destination zone in which they are located.
-5. The section {Suffix} consists of three digits and can be used as a simple sequential number or decimal classification system.
-6. In order to facilitate automated provisioning, the section may be replaced by a unique, automatically generated ID.
-7. The {Zone} affix of a subscription must be changed if it is moved to a different landing zone. This does not apply to inactive subscriptions that are moved to the Decommissioned Subscriptions management group.
-8. The {Zone} descripes the subscription environment. Allowed values are 'Online', 'Corp', 'Connectivity', 'management' or 'Identity'.
+4. Subscriptions can have the {Suffix} section, which can be used as a simple sequential number or decimal classification system.
+5. The name can be exntended with the {CustomerId} affix, which includes a appreviation of the customer name. These extension is optional.
 
 ## Resources
 For resources, an abbreviated prefix is formed based on their resource type. These prefixes are listed in a separate file. The formation of the name for a resource must be carried out according to the following guidelines:

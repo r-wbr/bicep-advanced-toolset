@@ -66,7 +66,8 @@ In certain cases, this directive may be derogated from if:
 Directory objects include management groups, security groups, and accounts. The prefix for all management groups is 'mg', prefixes for security groups are derived from the intended use. The use of security groups under this concept includes role-based access control (rbac), management tasks (mgnt), control (ctrl), and license distribution. The prefix of a user account is derived from the function of the principal; where the prefix 'adm' is appended to a user principal with administrative tasks. User principals, which correspond to a physical user with non-privileged access permissions, are only represented by the name or user ID. Service principals begin with the prefix 'svc'.
 
 ### Management groups
-1. The name of an administrative group consists of the sections {Prefix} and {Name}, {Suffix}.
+Directory objects of type management group use the {Prefix} 'mg'.
+1. The name of an administrative group consists of the sections {Prefix} and {Name}. Name sections are divided by hyphens.
 2. The {Name} section basically refers to the parent area, such as Organization, Platform Landing Zones, Application Landing Zones, or Feature Zones (Sandbox, Inactive).
 3. In order to improve readability, the display names of management groups may be displayed with spaces and upper and lower case letters.
 

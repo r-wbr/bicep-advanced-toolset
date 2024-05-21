@@ -55,16 +55,16 @@ type resourceTags = {
 type resourceName = {
   @description('Corresponds to the affix {customer}?. Reference the deployment parameters with \'deploymentParameter.customer\'.')
   customer: string?
-  @description('Corresponds to the affix {Prefix}.')
-  prefix: resourceType
+  @description('Corresponds to the affix {Prefix}. Reference the library files with \'lib.prefixAbbreviationList.prefixName\'.')
+  prefix: string
   @description('Corresponds to the affix {Name}. Abbreviation of the application name, likewise used in \'resourceTags.applicationName\'.')
   @maxLength(8)
   name: string
-  @description('Corresponds to the affix {Region}.')
-  region: locationType
-  @description('Corresponds to the affix {Environment}?.')
-  environment: environmentType?
-  @description('Corresponds to the affix {Region}. Use a squential number or one these values: \'akscluster\', \'aksnode\', \'azbackup\'.')
+  @description('Corresponds to the affix {Region}. Reference the library files from the deployment parameters \'lib.regionAbbreviationList[deploymentParameter.location]\'.')
+  region: string
+  @description('Corresponds to the affix {Environment}?. Reference the library files with from the resource tags object \'lib.environmentList[testResourceTags.environment]\'.')
+  environment: string?
+  @description('Corresponds to the affix {Region}. Use a squential number or one these values \'akscluster\', \'aksnode\', \'azbackup\'.')
   suffix: string?
 }
 
@@ -73,15 +73,6 @@ func newPolicyDefinitionName(guidValue string) string => 'pd-${substring(guid(gu
 
 @export()
 func newPolicyAssignmentName(guidValue string) string => 'pa-${substring(guid(guidValue), 0, 18)}'
-
-func getLocation() object => loadYamlContent('../lib/locations/abbreviations.yaml')
-func setLocation(locationValue string) string => getLocation()[locationValue]
-
-func getEnvironment() object => loadYamlContent('../lib/deployment/abbreviations.yaml')
-func setEnvironment(environmentValue string) string => getEnvironment()[environmentValue]
-
-func getResourceType() object => loadYamlContent('../lib/resources/abbreviations.yaml')
-func setResourceType(resourceTypeValue string) string => getResourceType()[resourceTypeValue]
 
 @export()
 func newResourceName(nameValue resourceName, patternValue namePatternType) string =>
@@ -121,30 +112,11 @@ func setNamePatternExtended2Special(nameValue resourceName) string => newNameExt
 
 func newNameDefault1(nameValue resourceName) object => {
   generic: toLower(contains(nameValue, 'suffix')
-    ? format(
-        '{0}-{1}-{2}-{3}', 
-        setResourceType(nameValue.prefix), 
-        nameValue.name, 
-        setLocation(nameValue.region), 
-        nameValue.suffix)
-    : format(
-        '{0}-{1}-{2}', 
-        setResourceType(nameValue.prefix), 
-        nameValue.name, 
-        setLocation(nameValue.region)))
+    ? format('{0}-{1}-{2}-{3}', nameValue.prefix, nameValue.name, nameValue.region, nameValue.suffix)
+    : format('{0}-{1}-{2}', nameValue.prefix, nameValue.name, nameValue.region))
   special: toLower(contains(nameValue, 'suffix')
-    ? format(
-        '{0}{1}{2}{3}', 
-        setResourceType(nameValue.prefix), 
-        nameValue.name, 
-        setLocation(nameValue.region), 
-        nameValue.suffix)
-    : format(
-        '{0}{1}{2}', 
-        setResourceType(nameValue.prefix),
-        nameValue.name, 
-        setLocation(nameValue.region)
-      ))
+    ? format('{0}{1}{2}{3}', nameValue.prefix, nameValue.name, nameValue.region, nameValue.suffix)
+    : format('{0}{1}{2}', nameValue.prefix, nameValue.name, nameValue.region))
 }
 
 @export()
@@ -152,37 +124,23 @@ func newNameDefault2(nameValue resourceName) object => {
   generic: toLower(contains(nameValue, 'suffix')
     ? format(
         '{0}-{1}-{2}-{3}-{4}',
-        setResourceType(nameValue.prefix),
+        nameValue.prefix,
         nameValue.name,
-        setLocation(nameValue.region),
-        #disable-next-line BCP321
-        setEnvironment(nameValue.environment),
+        nameValue.region,
+        nameValue.environment,
         nameValue.suffix
       )
-    : format('{0}-{1}-{2}-{3}-{4}-{5}', 
-        setResourceType(nameValue.prefix), 
-        nameValue.name, 
-        setLocation(nameValue.region),
-        #disable-next-line BCP321 
-        setEnvironment(nameValue.environment)
-      ))
+    : format('{0}-{1}-{2}-{3}-{4}-{5}', nameValue.prefix, nameValue.name, nameValue.region, nameValue.environment))
   special: toLower(contains(nameValue, 'suffix')
     ? format(
         '{0}{1}{2}{3}{4}',
-        setResourceType(nameValue.prefix),
+        nameValue.prefix,
         nameValue.name,
-        setLocation(nameValue.region),
-        #disable-next-line BCP321
-        setEnvironment(nameValue.environment),
+        nameValue.region,
+        nameValue.environment,
         nameValue.suffix
       )
-    : format('{0}{1}{2}{3}{4}{5}', 
-        setResourceType(nameValue.prefix),
-        nameValue.name, 
-        setLocation(nameValue.region),
-        #disable-next-line BCP321 
-        setEnvironment(nameValue.environment)
-      ))
+    : format('{0}{1}{2}{3}{4}{5}', nameValue.prefix, nameValue.name, nameValue.region, nameValue.environment))
 }
 
 func newNameExtended1(nameValue resourceName) object => {
@@ -190,32 +148,22 @@ func newNameExtended1(nameValue resourceName) object => {
     ? format(
         '{0}-{1}-{2}-{3}-{4}',
         nameValue.customer,
-        setResourceType(nameValue.prefix),
+        nameValue.prefix,
         nameValue.name,
-        setLocation(nameValue.region),
+        nameValue.region,
         nameValue.suffix
       )
-    : format('{0}-{1}-{2}-{3}', 
-        nameValue.customer, 
-        setResourceType(nameValue.prefix), 
-        nameValue.name, 
-        setLocation(nameValue.region)
-      ))
+    : format('{0}-{1}-{2}-{3}', nameValue.customer, nameValue.prefix, nameValue.name, nameValue.region))
   special: toLower(contains(nameValue, 'suffix')
     ? format(
         '{0}{1}{2}{3}{4}',
         nameValue.customer,
-        setResourceType(nameValue.prefix),
+        nameValue.prefix,
         nameValue.name,
-        setLocation(nameValue.region),
+        nameValue.region,
         nameValue.suffix
       )
-    : format('{0}{1}{2}{3}', 
-        nameValue.customer, 
-        setResourceType(nameValue.prefix), 
-        nameValue.name, 
-        setLocation(nameValue.region)
-      ))
+    : format('{0}{1}{2}{3}', nameValue.customer, nameValue.prefix, nameValue.name, nameValue.region))
 }
 
 func newNameExtended2(nameValue resourceName) object => {
@@ -223,40 +171,36 @@ func newNameExtended2(nameValue resourceName) object => {
     ? format(
         '{0}-{1}-{2}-{3}-{4}-{5}',
         nameValue.customer,
-        setResourceType(nameValue.prefix),
+        nameValue.prefix,
         nameValue.name,
-        setLocation(nameValue.region),
-        #disable-next-line BCP321
-        setEnvironment(nameValue.environment),
+        nameValue.region,
+        nameValue.environment,
         nameValue.suffix
       )
     : format(
         '{0}-{1}-{2}-{3}-{4}',
         nameValue.customer,
-        setResourceType(nameValue.prefix),
+        nameValue.prefix,
         nameValue.name,
-        setLocation(nameValue.region),
-        #disable-next-line BCP321
-        setEnvironment(nameValue.environment)
+        nameValue.region,
+        nameValue.environment
       ))
   special: toLower(contains(nameValue, 'suffix')
     ? format(
         '{0}{1}{2}{3}{4}{5}',
         nameValue.customer,
-        setResourceType(nameValue.prefix),
+        nameValue.prefix,
         nameValue.name,
-        setLocation(nameValue.region),
-        #disable-next-line BCP321
-        setEnvironment(nameValue.environment),
+        nameValue.region,
+        nameValue.environment,
         nameValue.suffix
       )
     : format(
         '{0}{1}{2}{3}{4}',
         nameValue.customer,
-        setResourceType(nameValue.prefix),
+        nameValue.prefix,
         nameValue.name,
-        setLocation(nameValue.region),
-        #disable-next-line BCP321
-        setEnvironment(nameValue.environment)
+        nameValue.region,
+        nameValue.environment
       ))
 }

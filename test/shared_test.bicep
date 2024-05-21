@@ -84,14 +84,13 @@ func getResourceType() object => loadYamlContent('../lib/resources/abbreviations
 func setResourceType(resourceTypeValue string) string => getResourceType()[resourceTypeValue]
 
 @export()
-func newResourceName(nameValue resourceName, patternValue namePatternType) string =>
-  selectNamePattern(nameValue, patternValue)
-
+func newResourceName(nameValue string, resourceTypeValue resourceType, locationValue locationType, environmentValue environmentType, patternValue namePatternType) string => toLower('${nameValue} ${resourceTypeValue} ${locationValue} ${environmentValue} ${patternValue}')
+/*
 @export()
-func newSpecialResourceName(nameValue resourceName, patternValue namePatternType) string =>
+func newSpecialResourceName(nameValue string, patternValue namePatternType) string =>
   selectNamePatternSpecial(nameValue, patternValue)
 
-func selectNamePattern(nameValue resourceName, patternValue namePatternType) string =>
+func selectNamePattern(nameValue string, patternValue namePatternType) string =>
   contains(patternValue, 'default1')
     ? setNamePatternDefault1(nameValue)
     : contains(patternValue, 'default2')
@@ -155,15 +154,13 @@ func newNameDefault2(nameValue resourceName) object => {
         setResourceType(nameValue.prefix),
         nameValue.name,
         setLocation(nameValue.region),
-        #disable-next-line BCP321
         setEnvironment(nameValue.environment),
         nameValue.suffix
       )
     : format('{0}-{1}-{2}-{3}-{4}-{5}', 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
-        setLocation(nameValue.region),
-        #disable-next-line BCP321 
+        setLocation(nameValue.region), 
         setEnvironment(nameValue.environment)
       ))
   special: toLower(contains(nameValue, 'suffix')
@@ -172,15 +169,13 @@ func newNameDefault2(nameValue resourceName) object => {
         setResourceType(nameValue.prefix),
         nameValue.name,
         setLocation(nameValue.region),
-        #disable-next-line BCP321
         setEnvironment(nameValue.environment),
         nameValue.suffix
       )
     : format('{0}{1}{2}{3}{4}{5}', 
         setResourceType(nameValue.prefix),
         nameValue.name, 
-        setLocation(nameValue.region),
-        #disable-next-line BCP321 
+        setLocation(nameValue.region), 
         setEnvironment(nameValue.environment)
       ))
 }
@@ -226,7 +221,6 @@ func newNameExtended2(nameValue resourceName) object => {
         setResourceType(nameValue.prefix),
         nameValue.name,
         setLocation(nameValue.region),
-        #disable-next-line BCP321
         setEnvironment(nameValue.environment),
         nameValue.suffix
       )
@@ -236,7 +230,6 @@ func newNameExtended2(nameValue resourceName) object => {
         setResourceType(nameValue.prefix),
         nameValue.name,
         setLocation(nameValue.region),
-        #disable-next-line BCP321
         setEnvironment(nameValue.environment)
       ))
   special: toLower(contains(nameValue, 'suffix')
@@ -246,7 +239,6 @@ func newNameExtended2(nameValue resourceName) object => {
         setResourceType(nameValue.prefix),
         nameValue.name,
         setLocation(nameValue.region),
-        #disable-next-line BCP321
         setEnvironment(nameValue.environment),
         nameValue.suffix
       )
@@ -256,7 +248,7 @@ func newNameExtended2(nameValue resourceName) object => {
         setResourceType(nameValue.prefix),
         nameValue.name,
         setLocation(nameValue.region),
-        #disable-next-line BCP321
         setEnvironment(nameValue.environment)
       ))
 }
+*/

@@ -56,4 +56,4 @@ resource testResourceGroup 'Microsoft.Resources/resourceGroups@2024-03-01' = {
 }
 ```
 
-The name generated with the provided values in this section is :rg-testapp-euw-001'.
+The name generated with the provided values in this section is: rg-testapp-euw-001'.

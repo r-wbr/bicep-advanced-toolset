@@ -4,23 +4,30 @@ metadata repository = 'https://github.com/r-wbr/bicep-tools'
 @description('Import library for location archetypes.')
 import { location as location } from '../locations/shared.bicep'
 
+@description('Selects the appropriate abbreviation for environments.')
 @export()
 func setEnvironment(environmentValue string) string => getEnvironment()[environmentValue]
 
+@description('Imports and provides the library for environments.')
 func getEnvironment() object => loadYamlContent('../deployment/library.yaml')
 
+@description('Defines available values for name pattern.')
 @export()
 type namePattern = 'default1' | 'default2' | 'extended1' | 'extended2'
 
+@description('Defines available values for environment.')
 @export()
 type environment = 'Production' | 'Staging' | 'Test' | 'Development'
 
+@description('Defines available values for business criticality.')
 @export()
 type businessCriticality = 'Unsupported' | 'Low' | 'Medium' | 'High' | 'Unit critical' | 'Mission critical'
 
+@description('Defines available values for data classification.')
 @export()
 type dataClassification = 'Public' | 'Company' | 'Confidential' | 'Highly confidential'
 
+@description('Defines available values for deployment parameters.')
 @export()
 type deploymentParameters = {
   @description('Primary location for deployment of resources.')

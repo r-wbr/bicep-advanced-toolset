@@ -1,20 +1,28 @@
 # Description
 ![Static Badge](https://img.shields.io/badge/Bicep-0.27.1-blue) ![Static Badge](https://img.shields.io/badge/Status-working-green)  
 
-To conform to the 'Shared variable file pattern' development model, 'bicep-tools' provides a set of user defined functions, data types and library files threw a shared bicep file, which are used in main templates with the *import* function. These functions and data types are used to simplify the creation of resource names according to various schemes. It includes four different name patterns to generate resource names and patternless names for policy definitions and assignments. Each pattern consists of a generic and a special name, where in the special name hyphens are excluded.
+This repository provides a set of user defined functions, data types and library files threw shared bicep files, which are used in main templates with the *import* function. These functions and data types are used to simplify the creation of resource names according to various schemes. It includes four different name patterns to generate resource names and patternless names for policy definitions and assignments. Each pattern consists of a generic and a special name, where in the special name hyphens are excluded.
 
 The naming convention used for the name patterns is listed [here](./docs/resourceOrganization.md).
 
 Examples for generated names from all patterns can be found [here](./docs/example.md).
 
-# Usage
-Input values for name generation in 'testResourceName' are defined with the type for resource names. The properties 'testResourceName.prefix', 'testResourceName.region' and 'testResourceName.environment' are generated with help of the library files.
-- The value for 'testResourceName.prefix' uses the 'lib.resourceTypeAbbreviationList.resourceGroup' property, whereby 'lib.resourceTypeAbbreviationList.*resourceGroup*' needs user input to decide which resource type appeviation is used.
-- The value for 'testResourceName.region' uses properties of deployment parameters, provided by the parameter file 'main.bicepparam'. Value is then compared with the values in the library files to choose the right abbreviation.
-- The value for 'testResourceName.environmentAbbreviation' is derived from 'testResourceTags', but can also be set manual as string. Value is then compared with the values in the library files to choose the right abbreviation.
-- If the value for 'testResourceName.suffix' is empty it will be excluded from the name.
+Included functions for import:
+```bicep
+@description('Creates a new role assignment with automatically generated name.')
+newRoleAssignment()
 
-Deployment parameters defined in 'main.bicepparam'.
+@description('Creates a new resource name based on choosen name pattern.')
+newResourceName()
+
+@description('Creates a new resource name without hyphens based on choosen name pattern.')
+newSpecialResourceName()
+```
+
+# Usage
+Input values for name and tag generation in 'testResourceName' are defined with custom data types. The properties 'testResourceName.prefix', 'testResourceName.region', 'testResourceName.environment', 'testResourceTags.businessCriticality', 'testResourceTags.dataClassification', 'testResourceTags.environment' are defined as custom types.
+
+Deployment parameters defined in 'main.bicepparam'. These parameters define the environment values for the whole deployment and are inherited to child modules.
 ```bicep
 param deploymentParameters = {
   location: 'westeurope'
@@ -25,25 +33,25 @@ param deploymentParameters = {
 }
 ```
 
-Resource tag and name parameters defined in 'main.bicep'.
+Resource tag and name parameters defined in 'main.bicep'. These parameters are volatile and define the resources that are deployed in a module, whereby the resource tags could be inherited to child modules.
 ```bicep
-param testResourceTags lib.resourceTags = {
-  applicationName: 'Bicep Tools'
-  businessCriticality: 'Low'
+param testResourceTags setResourceTags = {
+  applicationName: 'Test application'
+  businessCriticality: 'Medium'
   costCenter: '0000'
   creator: deploymentParameters.creator
   dataClassification: 'Public'
   deploymentDate: deploymentTimestamp
-  environment: 'Development'
-  owner: 'user@foo.bar'
+  environment: 'Production'
+  owner: 'testuser@foo.bar'
 }
 
-param testResourceName lib.resourceName = {
+param testResourceName setResourceName = {
   customer: deploymentParameters.customer
-  prefix: lib.resourceTypeAbbreviationList.resourceGroup
-  name: 'bctls'
-  region: lib.regionAbbreviationList[deploymentParameters.location]
-  environment: lib.environmentAbbreviationList[testResourceTags.environment]
+  prefix: 'resourceGroup'
+  name: 'testapp'
+  region: 'westeurope'
+  environment: 'Development'
   suffix: '001'
 }
 ```
@@ -51,8 +59,9 @@ param testResourceName lib.resourceName = {
 Generation of new resource name in 'main.bicep' based on provided values.
 ```bicep
 resource testResourceGroup 'Microsoft.Resources/resourceGroups@2024-03-01' = {
-  name: lib.newResourceName(testResourceName, deploymentParameters.namePattern)
+  name: newResourceName(testResourceName, deploymentParameters.namePattern)
   location: deploymentParameters.location
+  tags: testResourceTags
 }
 ```
 

@@ -1,5 +1,5 @@
 metadata author = 'rwbr@outlook.de'
-metadata repository = 'https://github.com/r-wbr/bicep-namegen'
+metadata repository = 'https://github.com/r-wbr/bicep-tools'
 
 targetScope = 'subscription'
 
@@ -17,7 +17,6 @@ import { newRoleAssignment as newRoleAssignment} from '../lib/authorization/shar
 import { newPolicyDefinitionName as newPolicyDefinitionName } from '../lib/authorization/shared.bicep'
 import { newPolicyAssignmentName as newPolicyAssignmentName } from '../lib/authorization/shared.bicep'
 
-param deploymentTimestamp string = utcNow('dd.MM.yyyy')
 param deploymentParameters deploymentParameterType
 
 param testResourceTags setResourceTags = {
@@ -26,7 +25,7 @@ param testResourceTags setResourceTags = {
   costCenter: '0000'
   creator: deploymentParameters.creator
   dataClassification: 'Public'
-  deploymentDate: deploymentTimestamp
+  deploymentDate: utcNow('dd.MM.yyyy')
   environment: 'Production'
   owner: 'testuser@foo.bar'
 }
@@ -48,4 +47,6 @@ resource testResourceGroup 'Microsoft.Resources/resourceGroups@2024-03-01' = {
 
 output resourceName string = testResourceGroup.name
 
-output roleAssignment object = newRoleAssignment('Group', 'contributor', '7327-f34f3-321d')
+var groupPrincipalId = '98dfj29-d230j-d2d3f2'
+
+output roleAssignment object = newRoleAssignment('Group', 'contributor', groupPrincipalId)

@@ -2,10 +2,13 @@ metadata author = 'rwbr@outlook.de'
 metadata repository = 'https://github.com/r-wbr/bicep-tools'
 
 @export()
+@description('Selects the appropriate abbreviation for locations.')
 func setLocation(locationValue string) string => getLocation()[locationValue]
 
+@description('Imports and provides the library for locations.')
 func getLocation() object => loadYamlContent('../locations/library.yaml')
 
+@description('Defines available values for location.')
 @export()
 type location =
   | 'eastus'

@@ -43,14 +43,17 @@ type resourceName = {
   suffix: string?
 }
 
+@description('Creates a new resource name based on choosen name pattern.')
 @export()
 func newResourceName(nameValue resourceName, patternValue namePatternType) string =>
   selectNamePattern(nameValue, patternValue)
 
+@description('Creates a new resource name without hyphens based on choosen name pattern.')
 @export()
 func newSpecialResourceName(nameValue resourceName, patternValue namePatternType) string =>
   selectNamePatternSpecial(nameValue, patternValue)
 
+@description('Selects the corresponding function for the choosen name pattern.')
 func selectNamePattern(nameValue resourceName, patternValue namePatternType) string =>
   contains(patternValue, 'default1')
     ? setNamePatternDefault1(nameValue)
@@ -58,6 +61,7 @@ func selectNamePattern(nameValue resourceName, patternValue namePatternType) str
         ? setNamePatternDefault2(nameValue)
         : contains(patternValue, 'extended1') ? setNamePatternExtended1(nameValue) : setNamePatternExtended2(nameValue)
 
+@description('Selects the corresponding function for the choosen name pattern.')
 func selectNamePatternSpecial(nameValue resourceName, patternValue namePatternType) string =>
   contains(patternValue, 'default1')
     ? setNamePatternDefault1Special(nameValue)
@@ -67,18 +71,31 @@ func selectNamePatternSpecial(nameValue resourceName, patternValue namePatternTy
             ? setNamePatternExtended1Special(nameValue)
             : setNamePatternExtended2Special(nameValue)
 
+@description('Calls the name building function for the choosen name pattern.')
 func setNamePatternDefault1(nameValue resourceName) string => newNameDefault1(nameValue).generic
+
+@description('Calls the name building function for the choosen name pattern.')
 func setNamePatternDefault1Special(nameValue resourceName) string => newNameDefault1(nameValue).special
 
+@description('Calls the name building function for the choosen name pattern.')
 func setNamePatternDefault2(nameValue resourceName) string => newNameDefault2(nameValue).generic
+
+@description('Calls the name building function for the choosen name pattern.')
 func setNamePatternDefault2Special(nameValue resourceName) string => newNameDefault2(nameValue).special
 
+@description('Calls the name building function for the choosen name pattern.')
 func setNamePatternExtended1(nameValue resourceName) string => newNameExtended1(nameValue).generic
+
+@description('Calls the name building function for the choosen name pattern.')
 func setNamePatternExtended1Special(nameValue resourceName) string => newNameExtended1(nameValue).special
 
+@description('Calls the name building function for the choosen name pattern.')
 func setNamePatternExtended2(nameValue resourceName) string => newNameExtended2(nameValue).generic
+
+@description('Calls the name building function for the choosen name pattern.')
 func setNamePatternExtended2Special(nameValue resourceName) string => newNameExtended2(nameValue).special
 
+@description('Builds the resource name based on the provided values.')
 func newNameDefault1(nameValue resourceName) object => {
   generic: toLower(contains(nameValue, 'suffix')
     ? format(
@@ -107,7 +124,7 @@ func newNameDefault1(nameValue resourceName) object => {
       ))
 }
 
-@export()
+@description('Builds the resource name based on the provided values.')
 func newNameDefault2(nameValue resourceName) object => {
   generic: toLower(contains(nameValue, 'suffix')
     ? format(
@@ -145,6 +162,7 @@ func newNameDefault2(nameValue resourceName) object => {
       ))
 }
 
+@description('Builds the resource name based on the provided values.')
 func newNameExtended1(nameValue resourceName) object => {
   generic: toLower(contains(nameValue, 'suffix')
     ? format(
@@ -178,6 +196,7 @@ func newNameExtended1(nameValue resourceName) object => {
       ))
 }
 
+@description('Builds the resource name based on the provided values.')
 func newNameExtended2(nameValue resourceName) object => {
   generic: toLower(contains(nameValue, 'suffix')
     ? format(
@@ -221,10 +240,13 @@ func newNameExtended2(nameValue resourceName) object => {
       ))
 }
 
-func getResourceType() object => loadYamlContent('library.yaml')
-
+@description('Selects the appropriate abbreviation for resource types.')
 func setResourceType(resourceTypeValue string) string => getResourceType()[resourceTypeValue]
 
+@description('Imports and provides the library for resource types.')
+func getResourceType() object => loadYamlContent('library.yaml')
+
+@description('Defines available values for resource type.')
 type resourceType =
   | 'subscription'
   | 'resourceGroup'

@@ -1,18 +1,14 @@
 metadata author = 'rwbr@outlook.de'
 metadata repository = 'https://github.com/r-wbr/bicep-tools'
 
+@description('Creates a new role assignment based on choosen values.')
 @export()
 func newRoleAssignment(principalTypeValue principalType, roleValue roleDefinition, principalIdValue string) object => {
-  name: guid(principalTypeValue, principalIdValue)
+  name: guid(principalTypeValue, principalIdValue, roleValue)
   properties: setRoleAssignmentProperties(roleValue, principalIdValue, principalTypeValue)
 }
 
-@export()
-func newPolicyDefinitionName(guidValue string) string => 'pd-${substring(guid(guidValue), 0, 18)}'
-
-@export()
-func newPolicyAssignmentName(guidValue string) string => 'pa-${substring(guid(guidValue), 0, 18)}'
-
+@description('Selects the resource id for the role definitions using the role definition library.')
 func getRoleResourceId(roleValue roleDefinition) string =>
   subscriptionResourceId('Microsoft.Authorization/roleDefinitions', loadYamlContent('library.yaml')[roleValue])
 
@@ -22,15 +18,30 @@ func setRoleAssignmentProperties(roleValue roleDefinition, principalId string, p
   principalType: principalTypeValue
 }
 
+@description('Defines available values for principal type.')
 type principalType = 'Device' | 'ForeignGroup' | 'Group' | 'ServicePrincipal' | 'User'
 
+@description('Defines the data type for reusable role assignment resources.')
 type roleAssignmentProperties = resource<'Microsoft.Authorization/roleAssignments@2022-04-01'>.properties
-/*
+
+// wip - create functions for role definition & assignment resources
+
+@export()
+func newPolicyDefinitionName(guidValue string) string => 'pd-${substring(guid(guidValue), 0, 18)}'
+
+@export()
+func newPolicyAssignmentName(guidValue string) string => 'pa-${substring(guid(guidValue), 0, 18)}'
+
+func setPolicyDefinitionProperties(policyDefinitionValue object) policyDefinitionProperties => {
+
+}
+
+
 type policyDefinitionProperties = resource<'Microsoft.Authorization/policyDefinitions@2023-04-01'>.properties
 
 type policyAssignmentProperties = resource<'Microsoft.Authorization/policyAssignments@2024-04-01'>.properties
-*/
 
+@description('Defines available values for role definition.')
 type roleDefinition =
   | 'contributor'
   | 'owner'

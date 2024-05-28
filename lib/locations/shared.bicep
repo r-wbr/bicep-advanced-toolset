@@ -1,3 +1,11 @@
+metadata author = 'rwbr@outlook.de'
+metadata repository = 'https://github.com/r-wbr/bicep-tools'
+
+@export()
+func setLocation(locationValue string) string => getLocation()[locationValue]
+
+func getLocation() object => loadYamlContent('../locations/library.yaml')
+
 @export()
 type location =
   | 'eastus'

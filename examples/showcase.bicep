@@ -4,16 +4,19 @@ metadata repository = 'https://github.com/r-wbr/bicep-namegen'
 targetScope = 'subscription'
 
 // Shared bicep should be imported as 'lib' namespace.
-import * as lib from '../src/shared.bicep'
-import { newResourceName as newResourceName } from '../src/shared.bicep'
-import { newSpecialResourceName as newSpecialResourceName } from '../src/shared.bicep'
-import { resourceName as setResourceName } from '../src/shared.bicep'
-import { resourceTags as setResourceTags } from '../src/shared.bicep'
+import { newResourceName as newResourceName } from '../lib/resources/shared.bicep'
+import { newSpecialResourceName as newSpecialResourceName } from '../lib/resources/shared.bicep'
+import { resourceName as setResourceName } from '../lib/resources/shared.bicep'
+import { resourceTags as setResourceTags } from '../lib/resources/shared.bicep'
+import { newRoleAssignment as newRoleAssignment} from '../lib/authorization/shared.bicep'
+import { deploymentParameters as deploymentParameterType } from '../lib/deployment/shared.bicep'
+import { newPolicyDefinitionName as newPolicyDefinitionName } from '../lib/authorization/shared.bicep'
+import { newPolicyAssignmentName as newPolicyAssignmentName } from '../lib/authorization/shared.bicep'
 
 // Initiate import for main and child modules
 @description('Define parameters to import from deployment.')
 param deploymentTimestamp string = utcNow('dd.MM.yyyy')
-param deploymentParameters lib.deploymentParameters
+param deploymentParameters deploymentParameterType
 
 // Define object for resource deployment in main module
 @description('Input for resource tags.')
@@ -56,12 +59,12 @@ output names object = {
     special: newSpecialResourceName(testResourceName, 'extended2')
   }
   policy1: {
-    policyDefinition: lib.newPolicyDefinitionName('AzurePolicyDisplayName1')
-    policyAssignment: lib.newPolicyAssignmentName('AzurePolicyDisplayName1')
+    policyDefinition: newPolicyDefinitionName('AzurePolicyDisplayName1')
+    policyAssignment: newPolicyAssignmentName('AzurePolicyDisplayName1')
   }
   policy2: {
-    policyDefinition: lib.newPolicyDefinitionName('AzurePolicyDisplayName2')
-    policyAssignment: lib.newPolicyAssignmentName('AzurePolicyDisplayName2')
+    policyDefinition: newPolicyDefinitionName('AzurePolicyDisplayName2')
+    policyAssignment: newPolicyAssignmentName('AzurePolicyDisplayName2')
   }
 }
 

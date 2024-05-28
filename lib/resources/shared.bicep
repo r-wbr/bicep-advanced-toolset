@@ -3,41 +3,16 @@ metadata repository = 'https://github.com/r-wbr/bicep-tools'
 
 @description('Import library for deployment archetypes.')
 @export()
-var environmentAbbreviationList = loadYamlContent('../lib/deployment/abbreviations.yaml')
-import { namePattern as namePatternType } from '../lib/deployment/types.bicep'
-import { environment as environmentType } from '../lib/deployment/types.bicep'
-import { businessCriticality as businessCriticalityType } from '../lib/deployment/types.bicep'
-import { dataClassification as dataClassificationType } from '../lib/deployment/types.bicep'
-
-@description('Import library for authorization archetypes.')
-@export()
-var roleDefinitionsList = loadYamlContent('../lib/authorization/archetypes.yaml')
-import { roleDefinition as roleDefinitionType } from '../lib/authorization/types.bicep'
-
-@description('Import library for resource archetypes.')
-@export()
-var resourceTypeAbbreviations = loadYamlContent('../lib/resources/abbreviations.yaml')
-import { resourceType as resourceType } from '../lib/resources/types.bicep'
+import { setEnvironment as setEnvironment } from '../deployment/shared.bicep'
+import { deploymentParameters as deploymentParameters } from '../deployment/shared.bicep'
+import { namePattern as namePatternType } from '../deployment/shared.bicep'
+import { environment as environmentType } from '../deployment/shared.bicep'
+import { businessCriticality as businessCriticalityType } from '../deployment/shared.bicep'
+import { dataClassification as dataClassificationType } from '../deployment/shared.bicep'
 
 @description('Import library for location archetypes.')
-@export()
-var locationAbbreviations = loadYamlContent('../lib/locations/abbreviations.yaml')
-import { location as locationType } from '../lib/locations/types.bicep'
-
-@export()
-type deploymentParameters = {
-  @description('Primary location for deployment of resources.')
-  location: locationType
-  @description('Full name of the customer or organization.')
-  @maxLength(12)
-  organization: string
-  @description(' Abbreviation of the organization or customer name.')
-  @maxLength(4)
-  customer: string
-  creator: string
-  @description('Name pattern for deployed resources.')
-  namePattern: namePatternType
-}
+import { setLocation as setLocation } from '../locations/shared.bicep'
+import { location as locationType } from '../locations/shared.bicep'
 
 @export()
 type resourceTags = {
@@ -67,21 +42,6 @@ type resourceName = {
   @description('Corresponds to the affix {Region}. Use a squential number or one these values: \'akscluster\', \'aksnode\', \'azbackup\'.')
   suffix: string?
 }
-
-@export()
-func newPolicyDefinitionName(guidValue string) string => 'pd-${substring(guid(guidValue), 0, 18)}'
-
-@export()
-func newPolicyAssignmentName(guidValue string) string => 'pa-${substring(guid(guidValue), 0, 18)}'
-
-func getLocation() object => loadYamlContent('../lib/locations/abbreviations.yaml')
-func setLocation(locationValue string) string => getLocation()[locationValue]
-
-func getEnvironment() object => loadYamlContent('../lib/deployment/abbreviations.yaml')
-func setEnvironment(environmentValue string) string => getEnvironment()[environmentValue]
-
-func getResourceType() object => loadYamlContent('../lib/resources/abbreviations.yaml')
-func setResourceType(resourceTypeValue string) string => getResourceType()[resourceTypeValue]
 
 @export()
 func newResourceName(nameValue resourceName, patternValue namePatternType) string =>
@@ -260,3 +220,69 @@ func newNameExtended2(nameValue resourceName) object => {
         setEnvironment(nameValue.environment)
       ))
 }
+
+func getResourceType() object => loadYamlContent('library.yaml')
+
+func setResourceType(resourceTypeValue string) string => getResourceType()[resourceTypeValue]
+
+type resourceType =
+  | 'subscription'
+  | 'resourceGroup'
+  | 'virtualMachine'
+  | 'virtualMaschineScaleSet'
+  | 'availabilitySet'
+  | 'proximityPlacementGroup'
+  | 'diskEncryptionSet'
+  | 'osDisk'
+  | 'dataDisk'
+  | 'gallerie'
+  | 'gallerieApplication'
+  | 'gallerieImage'
+  | 'capacityReservationGroup'
+  | 'capacityReservation'
+  | 'sshPublicKey'
+  | 'networkInterface'
+  | 'bastionHost'
+  | 'applicationSecurityGroup'
+  | 'networkSecurityGroup'
+  | 'azureFirewall'
+  | 'azureFirewallPolicies'
+  | 'azureFirewallPoliciesRuleCollection'
+  | 'ipGroup'
+  | 'ddosProtectionPlan'
+  | 'virtualNetwork'
+  | 'virtualNetworkGateway'
+  | 'virtualWan'
+  | 'virtualWanHub'
+  | 'natGateway'
+  | 'routeTable'
+  | 'applicationGateway'
+  | 'internalLoadBalancer'
+  | 'publicLoadBalancer'
+  | 'gatewayLoadBalancer'
+  | 'localNetworkGateway'
+  | 'expressRouteCircuit'
+  | 'expressRouteGateway'
+  | 'customIp'
+  | 'publicIp'
+  | 'privateEndpoint'
+  | 'networkWatcher'
+  | 'storageAccount'
+  | 'sqlServer'
+  | 'sqlServerDatabase'
+  | 'elasticPool'
+  | 'azureVirtualDesktop'
+  | 'managedIdentity'
+  | 'appService'
+  | 'function'
+  | 'migrateProject'
+  | 'keyVault'
+  | 'managedHsm'
+  | 'recoveryServicesVault'
+  | 'backupVault'
+  | 'automationAccount'
+  | 'logAnalyticsWorkspace'
+  | 'dataCollectionRule'
+  | 'dataCollectionEndpoint'
+  | 'privateLinkScope'
+

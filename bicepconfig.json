@@ -7,17 +7,7 @@
     "resourceDerivedTypes": true,
     "resourceTypedParamsAndOutputs": true
   },
-  "moduleAliases": {
-    "br": {
-      "Bechtle": {
-        "registry": "iacbicregsandboxeuw.azurecr.io"
-      },
-      "Modules": {
-        "registry": "iacbicregsandboxeuw.azurecr.io",
-        "modulePath": "/modules"
-      }
-    }
-  },
+  "moduleAliases": {},
   "analyzers": {
     "core": {
       "enabled": true,

@@ -8,9 +8,9 @@ func setLocation(locationValue string) string => getLocation()[locationValue]
 @description('Imports and provides the library for locations.')
 func getLocation() object => loadYamlContent('../locations/library.yaml')
 
-@description('Defines available values for location.')
+@description('Defines available location values for user input.')
 @export()
-type location =
+type locationName =
 | 'East US'
 | 'East US 2'
 | 'South Central US'
@@ -62,3 +62,58 @@ type location =
 | 'UK West'
 | 'UAE Central'
 | 'Brazil Southeast'
+
+@description('Defines available location values for location.')
+@export()
+type location =
+| 'eastus'
+| 'eastus2'
+| 'southcentralus'
+| 'westus2'
+| 'westus3'
+| 'australiaeast'
+| 'southeastasia'
+| 'northeurope'
+| 'swedencentral'
+| 'uksouth'
+| 'westeurope'
+| 'centralus'
+| 'southafricanorth'
+| 'centralindia'
+| 'eastasia'
+| 'japaneast'
+| 'koreacentral'
+| 'canadacentral'
+| 'francecentral'
+| 'germanywestcentral'
+| 'italynorth'
+| 'norwayeast'
+| 'polandcentral'
+| 'spaincentral'
+| 'switzerlandnorth'
+| 'mexicocentral'
+| 'uaenorth'
+| 'brazilsouth'
+| 'israelcentral'
+| 'qatarcentral'
+| 'northcentralus'
+| 'westus'
+| 'japanwest'
+| 'centraluseuap'
+| 'eastus2euap'
+| 'westcentralus'
+| 'southafricawest'
+| 'australiacentral'
+| 'australiacentral2'
+| 'australiasoutheast'
+| 'koreasouth'
+| 'southindia'
+| 'westindia'
+| 'canadaeast'
+| 'francesouth'
+| 'germanynorth'
+| 'norwaywest'
+| 'switzerlandwest'
+| 'ukwest'
+| 'uaecentral'
+| 'brazilsoutheast'

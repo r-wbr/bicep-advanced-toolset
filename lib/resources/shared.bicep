@@ -12,7 +12,7 @@ import { dataClassification as dataClassificationType } from '../deployment/shar
 
 @description('Import library for location archetypes.')
 import { setLocation as setLocation } from '../locations/shared.bicep'
-import { location as locationType } from '../locations/shared.bicep'
+import { locationName as locationType } from '../locations/shared.bicep'
 
 @export()
 type resourceTags = {

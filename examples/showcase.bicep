@@ -43,7 +43,7 @@ param testResourceName setResourceName = {
   customer: deploymentParameters.customer
   prefix: 'Resource group'
   name: 'testapp'
-  region: 'westeurope'
+  region: 'West Europe'
   environment: 'Development'
   suffix: '001'
 }

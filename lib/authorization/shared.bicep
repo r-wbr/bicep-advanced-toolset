@@ -4,6 +4,12 @@ metadata repository = 'https://github.com/r-wbr/bicep-tools'
 @description('Import library for location archetypes.')
 import { location as locationType } from '../locations/shared.bicep'
 
+@export()
+func newPolicyDefinitionName(guidValue string) string => 'pd-${substring(guid(guidValue), 0, 18)}'
+
+@export()
+func newPolicyAssignmentName(guidValue string) string => 'pa-${substring(guid(guidValue), 0, 18)}'
+
 @description('Creates a new role assignment based on choosen values.')
 @export()
 func newRoleAssignment(principalTypeValue principalType, roleValue roleDefinition, principalIdValue string) object => {

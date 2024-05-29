@@ -4,12 +4,19 @@ metadata repository = 'https://github.com/r-wbr/bicep-namegen'
 targetScope = 'subscription'
 
 // Shared bicep should be imported as 'lib' namespace.
+
+@description('Import library for resource archetypes.')
 import { newResourceName as newResourceName } from '../lib/resources/shared.bicep'
+import { newUniqueResourceName as newUniqueResourceName } from '../lib/resources/shared.bicep'
 import { newSpecialResourceName as newSpecialResourceName } from '../lib/resources/shared.bicep'
 import { resourceName as setResourceName } from '../lib/resources/shared.bicep'
 import { resourceTags as setResourceTags } from '../lib/resources/shared.bicep'
-import { newRoleAssignment as newRoleAssignment} from '../lib/authorization/shared.bicep'
+
+@description('Import library for deployment archetypes.')
 import { deploymentParameters as deploymentParameterType } from '../lib/deployment/shared.bicep'
+
+@description('Import library for authorization archetypes.')
+import { newRoleAssignment as newRoleAssignment } from '../lib/authorization/shared.bicep'
 import { newPolicyDefinitionName as newPolicyDefinitionName } from '../lib/authorization/shared.bicep'
 import { newPolicyAssignmentName as newPolicyAssignmentName } from '../lib/authorization/shared.bicep'
 
@@ -34,7 +41,7 @@ param testResourceTags setResourceTags = {
 @description('Input for resource name.')
 param testResourceName setResourceName = {
   customer: deploymentParameters.customer
-  prefix: 'resourceGroup'
+  prefix: 'Resource group'
   name: 'testapp'
   region: 'westeurope'
   environment: 'Development'

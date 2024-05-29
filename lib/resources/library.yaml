@@ -1,75 +1,197 @@
-# Microsoft.Subscription
-subscription: sub
-# Microsoft.Resources
-resourceGroup: rg
-# Microsoft.Compute
-virtualMachine: vm
-virtualMaschineScaleSet: vmss
-availabilitySet: avs
-proximityPlacementGroup: ppg
-diskEncryptionSet: des
-osDisk: osdisk
-dataDisk: datadisk
-gallerie: gal
-gallerieApplication: gapp
-gallerieImage: gimg
-capacityReservationGroup: crg
-capacityReservation: cr
-sshPublicKey: ssh
-# Microsoft.Network
-networkInterface: nic
-bastionHost: bas
-applicationSecurityGroup: asg
-networkSecurityGroup: nsg
-azureFirewall: fw
-azureFirewallPolicies: pol
-azureFirewallPoliciesRuleCollection: rc
-ipGroup: ipg
-ddosProtectionPlan: ddos
-virtualNetwork: vnet
-virtualNetworkGateway: vngw
-virtualWan: vwan
-virtualWanHub: vhub
-natGateway: natgw
-routeTable: rt
-applicationGateway: appgw
-internalLoadBalancer: ilb
-publicLoadBalancer: plb
-gatewayLoadBalancer: gwlb
-localNetworkGateway: lngw
-expressRouteCircuit: exrc
-expressRouteGateway: exgw
-customIp: cip
-publicIp: pip
-privateEndpoint: pep
-networkWatcher: nw
-# Microsoft.Storage
-storageAccount: st
-# Microsoft.Sql
-sqlServer: sql
-sqlServerDatabase: sqldb
-elasticPool: sqlep
-# Microsoft.DesktopVirtualization
-azureVirtualDesktop: avd
-# Microsoft.ManagedIdentity
-managedIdentity: id
-# Microsoft.Web
-appService: app
-function: fnc
-# Microsoft.Migrate
-migrateProject: azmig
-# Microsoft.KeyVault
-keyVault: kv
-managedHsm: hsm
-# Microsoft.RecoveryServices
-recoveryServicesVault: rsv
-# Microsoft.DataProtection
-backupVault: bck
-# Microsoft.Automation
-automationAccount: aa
-# Microsoft.OperationalInsights
-logAnalyticsWorkspace: laws
-# Microsoft.Monitor
-dataCollectionRule: dcr
-dataCollectionEndpoint: dce
-privateLinkScope: ampls
+AI Search: srch
+Azure AI services multi-service account: aisa
+Azure AI Video Indexer: avi
+Azure Machine Learning workspace: mlw
+Azure OpenAI Service: oai
+Bot service: bot
+Computer vision: cv
+Content moderator: cm
+Content safety: cs
+Custom vision (prediction): cstv
+Custom vision (training): cstvt
+Document intelligence: di
+Face API: face
+Health Insights: hi
+Immersive reader: ir
+Language service: lang
+Speech service: spch
+Translator: trsl
+Azure Analysis Services server: as
+Azure Databricks workspace: dbw
+Azure Data Explorer cluster: dec
+Azure Data Explorer cluster database: dedb
+Azure Data Factory: adf
+Azure Digital Twin instance: dt
+Azure Stream Analytics: asa
+Azure Synapse Analytics private link hub: synplh
+Azure Synapse Analytics SQL Dedicated Pool: syndp
+Azure Synapse Analytics Spark Pool: synsp
+Azure Synapse Analytics workspaces: synw
+Data Lake Store account: dls
+Data Lake Analytics account: dla
+Event Hubs namespace: evhns
+Event hub: evh
+Event Grid domain: evgd
+Event Grid subscriptions: evgs
+Event Grid topic: evgt
+Event Grid system topic: egst
+HDInsight - Hadoop cluster: hadoop
+HDInsight - HBase cluster: hbase
+HDInsight - Kafka cluster: kafka
+HDInsight - Spark cluster: spark
+HDInsight - Storm cluster: storm
+HDInsight - ML Services cluster: mls
+IoT hub: iot
+Provisioning services: provs
+Provisioning services certificate: pcert
+Power BI Embedded: pbi
+Time Series Insights environment: tsi
+App Service environment: ase
+App Service plan: asp
+Azure Load Testing instance: lt
+Availability set: avail
+Azure Arc enabled server: arcs
+Azure Arc enabled Kubernetes cluster: arck
+Batch accounts: ba
+Cloud service: cld
+Communication Services: acs
+Disk encryption set: des
+Function app: func
+Gallery: gal
+Hosting environment: host
+Image template: it
+Managed disk (OS): osdisk
+Managed disk (data): disk
+Notification Hubs: ntf
+Notification Hubs namespace: ntfns
+Proximity placement group: ppg
+Restore point collection: rpc
+Snapshot: snap
+Static web app: stapp
+Virtual machine: vm
+Virtual machine scale set: vmss
+Virtual machine maintenance configuration: mc
+VM storage account: stvm
+Web app: app
+AKS cluster: aks
+AKS system node pool: npsys
+AKS user node pool: np
+Container apps: ca
+Container apps environment: cae
+Container registry: cr
+Container instance: ci
+Service Fabric cluster: sf
+Service Fabric managed cluster: sfmc
+Azure Cosmos DB database: cosmos
+Azure Cosmos DB for Apache Cassandra account: coscas
+Azure Cosmos DB for MongoDB account: cosmon
+Azure Cosmos DB for NoSQL account: cosno
+Azure Cosmos DB for Table account: costab
+Azure Cosmos DB for Apache Gremlin account: cosgrm
+Azure Cosmos DB PostgreSQL cluster: cospos
+Azure Cache for Redis instance: redis
+Azure SQL Database server: sql
+Azure SQL database: sqldb
+Azure SQL Elastic Job agent: sqlja
+Azure SQL Elastic Pool: sqlep
+MariaDB server: maria
+MariaDB database: mariadb
+MySQL database: mysql
+PostgreSQL database: psql
+SQL Server Stretch Database: sqlstrdb
+SQL Managed Instance: sqlmi
+App Configuration store: appcs
+Maps account: map
+SignalR: sigr
+WebPubSub: wps
+Azure Managed Grafana: amg
+API management service instance: apim
+Integration account: ia
+Logic app: logic
+Service Bus namespace: sbns
+Service Bus queue: sbq
+Service Bus topic: sbt
+Service Bus topic subscription: sbts
+Automation account: aa
+Application Insights: appi
+Azure Monitor action group: ag
+Azure Monitor data collection rule: dcr
+Azure Monitor alert processing rule: apr
+Blueprint (planned for deprecation): bp
+Blueprint assignment (planned for deprecation): bpa
+Data collection endpoint: dce
+Log Analytics workspace: log
+Log Analytics query packs: pack
+Management group: mg
+Microsoft Purview instance: pview
+Resource group: rg
+Template specs name: ts
+Azure Migrate project: migr
+Database Migration Service instance: dms
+Recovery Services vault: rsv
+Application gateway: agw
+Application security group (ASG): asg
+CDN profile: cdnp
+CDN endpoint: cdne
+Connections: con
+DNS forwarding ruleset: dnsfrs
+DNS private resolver: dnspr
+DNS private resolver inbound endpoint: in
+DNS private resolver outbound endpoint: out
+Firewall: afw
+Firewall policy: afwp
+ExpressRoute circuit: erc
+ExpressRoute gateway: ergw
+Front Door (Standard/Premium) profile: afd
+Front Door (Standard/Premium) endpoint: fde
+Front Door firewall policy: fdfp
+Front Door (classic): afd
+IP group: ipg
+Load balancer (internal): lbi
+Load balancer (external): lbe
+Load balancer rule: rule
+Local network gateway: lgw
+NAT gateway: nat
+Network interface (NIC): nic
+Network security group (NSG): nsg
+Network security group (NSG) security rules: nsgsr
+Network Watcher: nw
+Private Link: pl
+Private endpoint: pep
+Public IP address: pip
+Public IP address prefix: ippre
+Route filter: rf
+Route server: rtserv
+Route table: rt
+Service endpoint policy: se
+Traffic Manager profile: traf
+User defined route (UDR): udr
+Virtual network: vnet
+Virtual network gateway: vgw
+Virtual network manager: vnm
+Virtual network peering: peer
+Virtual network subnet: snet
+Virtual WAN: vwan
+Virtual WAN Hub: vhub
+Azure Bastion: bas
+Key vault: kv
+Key Vault Managed HSM: kvmhsm
+Managed identity: id
+SSH key: sshkey
+VPN Gateway: vpng
+VPN connection: vcn
+VPN site: vst
+Web Application Firewall (WAF) policy: waf
+Web Application Firewall (WAF) policy rule group: wafrg
+Azure StorSimple: ssimp
+Backup Vault name: bvault
+Backup Vault policy: bkpol
+File share: share
+Storage account: st
+Storage Sync Service name: sss
+Azure Lab Services lab plan: lp
+Virtual desktop host pool: vdpool
+Virtual desktop application group: vdag
+Virtual desktop workspace: vdws
+Virtual desktop scaling plan: vdscaling
+Subscription: sub

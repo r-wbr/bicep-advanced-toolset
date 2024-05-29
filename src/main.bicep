@@ -16,7 +16,6 @@ import { deploymentParameters as deploymentParameterType } from '../lib/deployme
 @description('Import library for authorization archetypes.')
 import { newRoleAssignment as newRoleAssignment } from '../lib/authorization/shared.bicep'
 
-
 param deploymentParameters deploymentParameterType
 
 param testResourceTags setResourceTags = {
@@ -32,7 +31,7 @@ param testResourceTags setResourceTags = {
 
 param testResourceName setResourceName = {
   customer: deploymentParameters.customer
-  prefix: 'resourceGroup'
+  prefix: 'Resource group'
   name: 'testapp'
   region: 'westeurope'
   environment: 'Development'

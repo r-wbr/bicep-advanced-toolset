@@ -53,6 +53,14 @@ func newResourceName(nameValue resourceName, patternValue namePatternType) strin
 func newSpecialResourceName(nameValue resourceName, patternValue namePatternType) string =>
   selectNamePatternSpecial(nameValue, patternValue)
 
+@description('Creates a new unique resource name without hyphens regardless of the selected name pattern.')
+@export()
+func newUniqueResourceName(resourceTypeValue resourceType, nameValue string) string => 
+  format(
+    '{0}{1}', 
+    setResourceType(resourceTypeValue), 
+    substring(uniqueString(nameValue),0,18))
+
 @description('Selects the corresponding function for the choosen name pattern.')
 func selectNamePattern(nameValue resourceName, patternValue namePatternType) string =>
   contains(patternValue, 'default1')

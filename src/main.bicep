@@ -5,6 +5,7 @@ targetScope = 'subscription'
 
 @description('Import library for resource archetypes.')
 import { newResourceName as newResourceName } from '../lib/resources/shared.bicep'
+import { newUniqueResourceName as newUniqueResourceName } from '../lib/resources/shared.bicep'
 import { newSpecialResourceName as newSpecialResourceName } from '../lib/resources/shared.bicep'
 import { resourceName as setResourceName } from '../lib/resources/shared.bicep'
 import { resourceTags as setResourceTags } from '../lib/resources/shared.bicep'
@@ -13,9 +14,8 @@ import { resourceTags as setResourceTags } from '../lib/resources/shared.bicep'
 import { deploymentParameters as deploymentParameterType } from '../lib/deployment/shared.bicep'
 
 @description('Import library for authorization archetypes.')
-import { newRoleAssignment as newRoleAssignment} from '../lib/authorization/shared.bicep'
-import { newPolicyDefinitionName as newPolicyDefinitionName } from '../lib/authorization/shared.bicep'
-import { newPolicyAssignmentName as newPolicyAssignmentName } from '../lib/authorization/shared.bicep'
+import { newRoleAssignment as newRoleAssignment } from '../lib/authorization/shared.bicep'
+
 
 param deploymentParameters deploymentParameterType
 
@@ -47,6 +47,9 @@ resource testResourceGroup 'Microsoft.Resources/resourceGroups@2024-03-01' = {
 
 output resourceName string = testResourceGroup.name
 
-var groupPrincipalId = '98dfj29-d230j-d2d3f2'
+var roleAssignmentVar = newRoleAssignment('ServicePrincipal', 'Advisor Reviews Reader', 'b95e50e1-02c9-4382-a538-9a120f87bbf7')
 
-output roleAssignment object = newRoleAssignment('Group', 'contributor', groupPrincipalId)
+resource contributorRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: roleAssignmentVar.name
+  properties: roleAssignmentVar.properties
+}

@@ -1,7 +1,9 @@
-# Bicep Advanced Toolset (BATS)
+# Bicep Advanced Toolset (BAT)
 ![Static Badge](https://img.shields.io/badge/Version-2.0.1-green) ![Static Badge](https://img.shields.io/badge/Bicep-0.29.47-blue)
 
-This **Bicep Advanced Toolset** provides a set of user defined functions, data types and library files to simplify the creation of resources and implementing a naming and tagging convention. These functions and data types are used work threw shared bicep files, which are used in main templates with the *import* function. 
+![logo](/img/logo256.png)
+
+The **Bicep Advanced Toolset (BAT)** provides a set of user defined functions, data types and library files to simplify the creation of resources and implementing a naming and tagging convention. These functions and data types are used work threw shared bicep files, which are used in main templates with the *import* function. 
 
 # Resources
 

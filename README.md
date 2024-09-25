@@ -3,7 +3,7 @@
 
 ![logo](/img/logo256.png)
 
-The **Bicep Advanced Toolset (BAT)** provides a set of archetypes to simplify the creation and configuration of resources before a single template is written. The archetypes consist of user defined functions, data types and library files. The toolset helps implementing a consistent naming and tagging convention which can be fully integrated in every template.
+The **Bicep Advanced Toolset (BAT)** provides a solution to simplify the creation and configuration of resources before a single template is written. The toolset consist of user defined functions, data types and library files, separated into archetypes. This helps implementing a consistent naming and tagging convention which can be fully integrated in every template.
 
 > [!CAUTION]
 > For the toolset to function, experimental features must be activated in the bicep config file!
@@ -19,8 +19,6 @@ The **Bicep Advanced Toolset (BAT)** provides a set of archetypes to simplify th
 - Library Files: Centralized and shared storage of information and values.
 
 ## Archetypes
-
-
 
 ### Resources
 

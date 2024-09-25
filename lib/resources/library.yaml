@@ -1,8 +1,8 @@
 AI Search: srch
-Azure AI services multi-service account: aisa
-Azure AI Video Indexer: avi
-Azure Machine Learning workspace: mlw
-Azure OpenAI Service: oai
+AI services multi-service account: aisa
+AI Video Indexer: avi
+Machine Learning workspace: mlw
+OpenAI Service: oai
 Bot service: bot
 Computer vision: cv
 Content moderator: cm
@@ -16,17 +16,17 @@ Immersive reader: ir
 Language service: lang
 Speech service: spch
 Translator: trsl
-Azure Analysis Services server: as
-Azure Databricks workspace: dbw
-Azure Data Explorer cluster: dec
-Azure Data Explorer cluster database: dedb
-Azure Data Factory: adf
-Azure Digital Twin instance: dt
-Azure Stream Analytics: asa
-Azure Synapse Analytics private link hub: synplh
-Azure Synapse Analytics SQL Dedicated Pool: syndp
-Azure Synapse Analytics Spark Pool: synsp
-Azure Synapse Analytics workspaces: synw
+Analysis Services server: as
+Databricks workspace: dbw
+Data Explorer cluster: dec
+Data Explorer cluster database: dedb
+Data Factory: adf
+Digital Twin instance: dt
+Stream Analytics: asa
+Synapse Analytics private link hub: synplh
+Synapse Analytics SQL Dedicated Pool: syndp
+Synapse Analytics Spark Pool: synsp
+Synapse Analytics workspaces: synw
 Data Lake Store account: dls
 Data Lake Analytics account: dla
 Event Hubs namespace: evhns
@@ -48,10 +48,10 @@ Power BI Embedded: pbi
 Time Series Insights environment: tsi
 App Service environment: ase
 App Service plan: asp
-Azure Load Testing instance: lt
+Load Testing instance: lt
 Availability set: avail
-Azure Arc enabled server: arcs
-Azure Arc enabled Kubernetes cluster: arck
+Arc enabled server: arcs
+Arc enabled Kubernetes cluster: arck
 Batch accounts: ba
 Cloud service: cld
 Communication Services: acs
@@ -82,18 +82,18 @@ Container registry: cr
 Container instance: ci
 Service Fabric cluster: sf
 Service Fabric managed cluster: sfmc
-Azure Cosmos DB database: cosmos
-Azure Cosmos DB for Apache Cassandra account: coscas
-Azure Cosmos DB for MongoDB account: cosmon
-Azure Cosmos DB for NoSQL account: cosno
-Azure Cosmos DB for Table account: costab
-Azure Cosmos DB for Apache Gremlin account: cosgrm
-Azure Cosmos DB PostgreSQL cluster: cospos
-Azure Cache for Redis instance: redis
-Azure SQL Database server: sql
-Azure SQL database: sqldb
-Azure SQL Elastic Job agent: sqlja
-Azure SQL Elastic Pool: sqlep
+Cosmos DB database: cosmos
+Cosmos DB for Apache Cassandra account: coscas
+Cosmos DB for MongoDB account: cosmon
+Cosmos DB for NoSQL account: cosno
+Cosmos DB for Table account: costab
+Cosmos DB for Apache Gremlin account: cosgrm
+Cosmos DB PostgreSQL cluster: cospos
+Cache for Redis instance: redis
+SQL Database server: sql
+SQL database: sqldb
+SQL Elastic Job agent: sqlja
+SQL Elastic Pool: sqlep
 MariaDB server: maria
 MariaDB database: mariadb
 MySQL database: mysql
@@ -104,7 +104,7 @@ App Configuration store: appcs
 Maps account: map
 SignalR: sigr
 WebPubSub: wps
-Azure Managed Grafana: amg
+Managed Grafana: amg
 API management service instance: apim
 Integration account: ia
 Logic app: logic
@@ -114,19 +114,17 @@ Service Bus topic: sbt
 Service Bus topic subscription: sbts
 Automation account: aa
 Application Insights: appi
-Azure Monitor action group: ag
-Azure Monitor data collection rule: dcr
-Azure Monitor alert processing rule: apr
-Blueprint (planned for deprecation): bp
-Blueprint assignment (planned for deprecation): bpa
+Action group: ag
+Alert processing rule: apr
+Data collection rule: dcr
 Data collection endpoint: dce
-Log Analytics workspace: log
+Log Analytics workspace: laws
 Log Analytics query packs: pack
 Management group: mg
 Microsoft Purview instance: pview
 Resource group: rg
 Template specs name: ts
-Azure Migrate project: migr
+Migrate project: migr
 Database Migration Service instance: dms
 Recovery Services vault: rsv
 Application gateway: agw
@@ -173,7 +171,7 @@ Virtual network peering: peer
 Virtual network subnet: snet
 Virtual WAN: vwan
 Virtual WAN Hub: vhub
-Azure Bastion: bas
+Bastion: bas
 Key vault: kv
 Key Vault Managed HSM: kvmhsm
 Managed identity: id
@@ -183,13 +181,13 @@ VPN connection: vcn
 VPN site: vst
 Web Application Firewall (WAF) policy: waf
 Web Application Firewall (WAF) policy rule group: wafrg
-Azure StorSimple: ssimp
+StorSimple: ssimp
 Backup Vault name: bvault
 Backup Vault policy: bkpol
 File share: share
 Storage account: st
 Storage Sync Service name: sss
-Azure Lab Services lab plan: lp
+Lab Services lab plan: lp
 Virtual desktop host pool: vdpool
 Virtual desktop application group: vdag
 Virtual desktop workspace: vdws

@@ -11,33 +11,33 @@ import { businessCriticality as businessCriticalityType } from '../deployment/sh
 import { dataClassification as dataClassificationType } from '../deployment/shared.bicep'
 
 @description('Import library for location archetypes.')
-import { setLocation as setLocation } from '../locations/shared.bicep'
-import { locationName as locationType } from '../locations/shared.bicep'
+import { setRegionAbbreviation } from '../locations/shared.bicep'
+import { regionName } from '../locations/shared.bicep'
 
 @export()
 type resourceTags = {
-  applicationName: string
-  businessCriticality: businessCriticalityType
-  costCenter: string
-  creator: string
-  dataClassification: dataClassificationType
-  deploymentDate: string
-  environment: environmentType
-  owner: string
+  ApplicationName: string
+  BusinessCriticality: businessCriticalityType
+  CostCenter: string
+  Creator: string
+  DataClassification: dataClassificationType
+  DeploymentDate: string
+  Environment: environmentType
+  Owner: string
 }
 
 @export()
 type resourceName = {
-  @description('Corresponds to the affix {customer}?. Reference the deployment parameters with \'deploymentParameter.customer\'.')
+  @description('Corresponds to the affix {Customer}?. Reference the deployment parameters with \'deploymentParameter.customer\'.')
   customer: string?
   @description('Corresponds to the affix {Prefix}.')
   prefix: resourceType
   @description('Corresponds to the affix {Name}. Abbreviation of the application name, likewise used in \'resourceTags.applicationName\'.')
-  @maxLength(8)
+  @maxLength(12)
   name: string
   @description('Corresponds to the affix {Region}.')
-  region: locationType
-  @description('Corresponds to the affix {Environment}?.')
+  region: regionName
+  @description('Corresponds to the affix {Environment}.')
   environment: environmentType?
   @description('Corresponds to the affix {Region}. Use a squential number or one these values: \'akscluster\', \'aksnode\', \'azbackup\'.')
   suffix: string?
@@ -59,7 +59,7 @@ func newUniqueResourceName(resourceTypeValue resourceType, nameValue string) str
   format(
     '{0}{1}', 
     setResourceType(resourceTypeValue), 
-    substring(uniqueString(nameValue),0,18))
+    uniqueString(nameValue),0,14)
 
 @description('Selects the corresponding function for the choosen name pattern.')
 func selectNamePattern(nameValue resourceName, patternValue namePatternType) string =>
@@ -110,25 +110,25 @@ func newNameDefault1(nameValue resourceName) object => {
         '{0}-{1}-{2}-{3}', 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
-        setLocation(nameValue.region), 
+        setRegionAbbreviation(nameValue.region), 
         nameValue.suffix)
     : format(
         '{0}-{1}-{2}', 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
-        setLocation(nameValue.region)))
+        setRegionAbbreviation(nameValue.region)))
   special: toLower(contains(nameValue, 'suffix')
     ? format(
         '{0}{1}{2}{3}', 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
-        setLocation(nameValue.region), 
+        setRegionAbbreviation(nameValue.region), 
         nameValue.suffix)
     : format(
         '{0}{1}{2}', 
         setResourceType(nameValue.prefix),
         nameValue.name, 
-        setLocation(nameValue.region)
+        setRegionAbbreviation(nameValue.region)
       ))
 }
 
@@ -139,7 +139,7 @@ func newNameDefault2(nameValue resourceName) object => {
         '{0}-{1}-{2}-{3}-{4}',
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setLocation(nameValue.region),
+        setRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321
         setEnvironment(nameValue.environment),
         nameValue.suffix
@@ -147,7 +147,7 @@ func newNameDefault2(nameValue resourceName) object => {
     : format('{0}-{1}-{2}-{3}-{4}-{5}', 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
-        setLocation(nameValue.region),
+        setRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321 
         setEnvironment(nameValue.environment)
       ))
@@ -156,7 +156,7 @@ func newNameDefault2(nameValue resourceName) object => {
         '{0}{1}{2}{3}{4}',
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setLocation(nameValue.region),
+        setRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321
         setEnvironment(nameValue.environment),
         nameValue.suffix
@@ -164,7 +164,7 @@ func newNameDefault2(nameValue resourceName) object => {
     : format('{0}{1}{2}{3}{4}{5}', 
         setResourceType(nameValue.prefix),
         nameValue.name, 
-        setLocation(nameValue.region),
+        setRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321 
         setEnvironment(nameValue.environment)
       ))
@@ -178,14 +178,14 @@ func newNameExtended1(nameValue resourceName) object => {
         nameValue.customer,
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setLocation(nameValue.region),
+        setRegionAbbreviation(nameValue.region),
         nameValue.suffix
       )
     : format('{0}-{1}-{2}-{3}', 
         nameValue.customer, 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
-        setLocation(nameValue.region)
+        setRegionAbbreviation(nameValue.region)
       ))
   special: toLower(contains(nameValue, 'suffix')
     ? format(
@@ -193,14 +193,14 @@ func newNameExtended1(nameValue resourceName) object => {
         nameValue.customer,
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setLocation(nameValue.region),
+        setRegionAbbreviation(nameValue.region),
         nameValue.suffix
       )
     : format('{0}{1}{2}{3}', 
         nameValue.customer, 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
-        setLocation(nameValue.region)
+        setRegionAbbreviation(nameValue.region)
       ))
 }
 
@@ -212,7 +212,7 @@ func newNameExtended2(nameValue resourceName) object => {
         nameValue.customer,
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setLocation(nameValue.region),
+        setRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321
         setEnvironment(nameValue.environment),
         nameValue.suffix
@@ -222,7 +222,7 @@ func newNameExtended2(nameValue resourceName) object => {
         nameValue.customer,
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setLocation(nameValue.region),
+        setRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321
         setEnvironment(nameValue.environment)
       ))
@@ -232,7 +232,7 @@ func newNameExtended2(nameValue resourceName) object => {
         nameValue.customer,
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setLocation(nameValue.region),
+        setRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321
         setEnvironment(nameValue.environment),
         nameValue.suffix
@@ -242,7 +242,7 @@ func newNameExtended2(nameValue resourceName) object => {
         nameValue.customer,
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setLocation(nameValue.region),
+        setRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321
         setEnvironment(nameValue.environment)
       ))
@@ -257,10 +257,10 @@ func getResourceType() object => loadYamlContent('library.yaml')
 @description('Defines available values for resource type.')
 type resourceType =
 | 'AI Search'
-| 'Azure AI services multi-service account'
-| 'Azure AI Video Indexer'
-| 'Azure Machine Learning workspace'
-| 'Azure OpenAI Service'
+| 'AI services multi-service account'
+| 'AI Video Indexer'
+| 'Machine Learning workspace'
+| 'OpenAI Service'
 | 'Bot service'
 | 'Computer vision'
 | 'Content moderator'
@@ -274,17 +274,17 @@ type resourceType =
 | 'Language service'
 | 'Speech service'
 | 'Translator'
-| 'Azure Analysis Services server'
-| 'Azure Databricks workspace'
-| 'Azure Data Explorer cluster'
-| 'Azure Data Explorer cluster database'
-| 'Azure Data Factory'
-| 'Azure Digital Twin instance'
-| 'Azure Stream Analytics'
-| 'Azure Synapse Analytics private link hub'
-| 'Azure Synapse Analytics SQL Dedicated Pool'
-| 'Azure Synapse Analytics Spark Pool'
-| 'Azure Synapse Analytics workspaces'
+| 'Analysis Services server'
+| 'Databricks workspace'
+| 'Data Explorer cluster'
+| 'Data Explorer cluster database'
+| 'Data Factory'
+| 'Digital Twin instance'
+| 'Stream Analytics'
+| 'Synapse Analytics private link hub'
+| 'Synapse Analytics SQL Dedicated Pool'
+| 'Synapse Analytics Spark Pool'
+| 'Synapse Analytics workspaces'
 | 'Data Lake Store account'
 | 'Data Lake Analytics account'
 | 'Event Hubs namespace'
@@ -306,10 +306,10 @@ type resourceType =
 | 'Time Series Insights environment'
 | 'App Service environment'
 | 'App Service plan'
-| 'Azure Load Testing instance'
+| 'Load Testing instance'
 | 'Availability set'
-| 'Azure Arc enabled server'
-| 'Azure Arc enabled Kubernetes cluster'
+| 'Arc enabled server'
+| 'Arc enabled Kubernetes cluster'
 | 'Batch accounts'
 | 'Cloud service'
 | 'Communication Services'
@@ -340,18 +340,18 @@ type resourceType =
 | 'Container instance'
 | 'Service Fabric cluster'
 | 'Service Fabric managed cluster'
-| 'Azure Cosmos DB database'
-| 'Azure Cosmos DB for Apache Cassandra account'
-| 'Azure Cosmos DB for MongoDB account'
-| 'Azure Cosmos DB for NoSQL account'
-| 'Azure Cosmos DB for Table account'
-| 'Azure Cosmos DB for Apache Gremlin account'
-| 'Azure Cosmos DB PostgreSQL cluster'
-| 'Azure Cache for Redis instance'
-| 'Azure SQL Database server'
-| 'Azure SQL database'
-| 'Azure SQL Elastic Job agent'
-| 'Azure SQL Elastic Pool'
+| 'Cosmos DB database'
+| 'Cosmos DB for Apache Cassandra account'
+| 'Cosmos DB for MongoDB account'
+| 'Cosmos DB for NoSQL account'
+| 'Cosmos DB for Table account'
+| 'Cosmos DB for Apache Gremlin account'
+| 'Cosmos DB PostgreSQL cluster'
+| 'Cache for Redis instance'
+| 'SQL Database server'
+| 'SQL database'
+| 'SQL Elastic Job agent'
+| 'SQL Elastic Pool'
 | 'MariaDB server'
 | 'MariaDB database'
 | 'MySQL database'
@@ -362,7 +362,7 @@ type resourceType =
 | 'Maps account'
 | 'SignalR'
 | 'WebPubSub'
-| 'Azure Managed Grafana'
+| 'Managed Grafana'
 | 'API management service instance'
 | 'Integration account'
 | 'Logic app'
@@ -372,19 +372,19 @@ type resourceType =
 | 'Service Bus topic subscription'
 | 'Automation account'
 | 'Application Insights'
-| 'Azure Monitor action group'
-| 'Azure Monitor data collection rule'
-| 'Azure Monitor alert processing rule'
+| 'Action group'
+| 'Alert processing rule'
+| 'Data collection rule'
+| 'Data collection endpoint'
 | 'Blueprint (planned for deprecation)'
 | 'Blueprint assignment (planned for deprecation)'
-| 'Data collection endpoint'
 | 'Log Analytics workspace'
 | 'Log Analytics query packs'
 | 'Management group'
 | 'Microsoft Purview instance'
 | 'Resource group'
 | 'Template specs name'
-| 'Azure Migrate project'
+| 'Migrate project'
 | 'Database Migration Service instance'
 | 'Recovery Services vault'
 | 'Application gateway'
@@ -431,7 +431,7 @@ type resourceType =
 | 'Virtual network subnet'
 | 'Virtual WAN'
 | 'Virtual WAN Hub'
-| 'Azure Bastion'
+| 'Bastion'
 | 'Key vault'
 | 'Key Vault Managed HSM'
 | 'Managed identity'
@@ -441,15 +441,38 @@ type resourceType =
 | 'VPN site'
 | 'Web Application Firewall (WAF) policy'
 | 'Web Application Firewall (WAF) policy rule group'
-| 'Azure StorSimple'
+| 'StorSimple'
 | 'Backup Vault name'
 | 'Backup Vault policy'
 | 'File share'
 | 'Storage account'
 | 'Storage Sync Service name'
-| 'Azure Lab Services lab plan'
+| 'Lab Services lab plan'
 | 'Virtual desktop host pool'
 | 'Virtual desktop application group'
 | 'Virtual desktop workspace'
 | 'Virtual desktop scaling plan'
 | 'Subscription'
+
+func setAddressSpaceConnectivity(addressSpace string) string => cidrSubnet(addressSpace, 21, 30)
+
+func setAddressSpaceIdentity(addressSpace string) string => cidrSubnet(addressSpace, 22, 59)
+
+func setAddressSpaceManagement(addressSpace string) string => cidrSubnet(addressSpace, 22, 58)
+
+func setAddressSpacehubVirtualNetworkPrimary(addressSpace string) string => cidrSubnet(addressSpace, 23, 124)
+
+func setAddressSpacehubVirtualNetworkSecondary(addressSpace string) string => cidrSubnet(addressSpace, 23, 125)
+
+func setAddressSpacehubVirtualWan(addressSpace string) string => cidrSubnet(addressSpace, 23, 126)
+
+@export()
+@description('Calculates the address space for the corresponsing item.')
+func getAddressSpace(addressSpace string) object => {
+  connectivity: setAddressSpaceConnectivity(addressSpace)
+  identity: setAddressSpaceIdentity(addressSpace)
+  management: setAddressSpaceManagement(addressSpace)
+  hubVirtualNetworkPrimary: setAddressSpacehubVirtualNetworkPrimary(addressSpace)
+  hubVirtualNetworkSecondary: setAddressSpacehubVirtualNetworkSecondary(addressSpace)
+  virtualWan: setAddressSpacehubVirtualWan(addressSpace)
+}

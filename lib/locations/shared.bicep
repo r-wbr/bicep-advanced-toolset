@@ -3,69 +3,15 @@ metadata repository = 'https://github.com/r-wbr/bicep-tools'
 
 @export()
 @description('Selects the appropriate abbreviation for locations.')
-func setLocation(locationValue string) string => getLocation()[locationValue]
+func setRegionAbbreviation(regionValue regionName) string => getRegionAbbreviation()[regionValue]
 
 @description('Imports and provides the library for locations.')
-func getLocation() object => loadYamlContent('../locations/library.yaml')
+func getRegionAbbreviation() object => loadYamlContent('../locations/library.yaml')
 
-@description('Defines available location values for user input.')
+@description('Defines available values for locations.')
 @export()
-type locationName =
-| 'East US'
-| 'East US 2'
-| 'South Central US'
-| 'West US 2'
-| 'West US 3'
-| 'Australia East'
-| 'Southeast Asia'
-| 'North Europe'
-| 'Sweden Central'
-| 'UK South'
-| 'West Europe'
-| 'Central US'
-| 'South Africa North'
-| 'Central India'
-| 'East Asia'
-| 'Japan East'
-| 'Korea Central'
-| 'Canada Central'
-| 'France Central'
-| 'Germany West Central'
-| 'Italy North'
-| 'Norway East'
-| 'Poland Central'
-| 'Spain Central'
-| 'Switzerland North'
-| 'Mexico Central'
-| 'UAE North'
-| 'Brazil South'
-| 'Israel Central'
-| 'Qatar Central'
-| 'North Central US'
-| 'West US'
-| 'Japan West'
-| 'Central US EUAP'
-| 'East US 2 EUAP'
-| 'West Central US'
-| 'South Africa West'
-| 'Australia Central'
-| 'Australia Central 2'
-| 'Australia Southeast'
-| 'Korea South'
-| 'South India'
-| 'West India'
-| 'Canada East'
-| 'France South'
-| 'Germany North'
-| 'Norway West'
-| 'Switzerland West'
-| 'UK West'
-| 'UAE Central'
-| 'Brazil Southeast'
-
-@description('Defines available location values for location.')
-@export()
-type location =
+type regionName =
+| 'global'
 | 'eastus'
 | 'eastus2'
 | 'southcentralus'

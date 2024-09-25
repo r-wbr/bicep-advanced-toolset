@@ -2,7 +2,7 @@ metadata author = 'rwbr@outlook.de'
 metadata repository = 'https://github.com/r-wbr/bicep-tools'
 
 @description('Import library for location archetypes.')
-import { location as location } from '../locations/shared.bicep'
+import { regionName } from '../locations/shared.bicep'
 
 @description('Selects the appropriate abbreviation for environments.')
 @export()
@@ -31,15 +31,14 @@ type dataClassification = 'Public' | 'Company' | 'Confidential' | 'Highly confid
 @export()
 type deploymentParameters = {
   @description('Primary location for deployment of resources.')
-  location: location
+  location: regionName
   @description('Full name of the customer or organization.')
   @maxLength(12)
   organization: string
-  @description(' Abbreviation of the organization or customer name.')
+  @description('Abbreviation of the organization or customer name.')
   @maxLength(4)
-  customer: string
+  organizationAbbreviation: string
   creator: string
   @description('Name pattern for deployed resources.')
   namePattern: namePattern
 }
-

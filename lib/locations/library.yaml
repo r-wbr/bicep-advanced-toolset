@@ -1,51 +1,51 @@
-East US: use
-East US 2: use2
-South Central US: ussc
-West US 2: usw2
-West US 3: usw3
-Australia East: aue
-Southeast Asia: asse
-North Europe: eun
-Sweden Central: sec
-UK South: uks
-West Europe: euw
-Central US: usc
-South Africa North: zan
-Central India: inc
-East Asia: ase
-Japan East: jpe
-Korea Central: koc
-Canada Central: cac
-France Central: frc
-Germany West Central: dewc
-Italy North: itn
-Norway East: nwe
-Poland Central: poc
-Spain Central: esc
-Switzerland North: swn
-Mexico Central: mxc
-UAE North: aen
-Brazil South: brs
-Israel Central: isc
-Qatar Central: qac
-North Central US: usnc
-West US: usw
-Japan West: jpw
-Central US EUAP: usc
-East US 2 EUAP: use2
-West Central US: uswc
-South Africa West: zaw
-Australia Central: auc
-Australia Central 2: auc2
-Australia Southeast: ause
-Korea South: kos
-South India: ins
-West India: inw
-Canada East: cae
-France South: frs
-Germany North: den
-Norway West: now
-Switzerland West: sww
-UK West: ukw
-UAE Central: aec
-Brazil Southeast: brse
+eastus: use
+eastus2: use2
+southcentralus: ussc
+westus2: usw2
+westus3: usw3
+australiaeast: aue
+southeastasia: asse
+northeurope: eun
+swedencentral: sec
+uksouth: uks
+westeurope: euw
+centralus: usc
+southafricanorth: zan
+centralindia: inc
+eastasia: ase
+japaneast: jpe
+koreacentral: koc
+canadacentral: cac
+francecentral: frc
+germanywestcentral: dewc
+italynorth: itn
+norwayeast: nwe
+polandcentral: poc
+spaincentral: esc
+switzerlandnorth: swn
+mexicocentral: mxc
+uaenorth: aen
+brazilsouth: brs
+israelcentral: isc
+qatarcentral: qac
+northcentralus: usnc
+westus: usw
+japanwest: jpw
+centraluseuap: usc
+eastus2euap: use2
+westcentralus: uswc
+southafricawest: zaw
+australiacentral: auc
+australiacentral2: auc2
+australiasoutheast: ause
+koreasouth: kos
+southindia: ins
+westindia: inw
+canadaeast: cae
+francesouth: frs
+germanynorth: den
+norwaywest: now
+switzerlandwest: sww
+ukwest: ukw
+uaecentral: aec
+brazilsoutheast: brse

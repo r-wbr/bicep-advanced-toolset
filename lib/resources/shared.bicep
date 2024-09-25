@@ -28,18 +28,12 @@ type resourceTags = {
 
 @export()
 type resourceName = {
-  @description('Corresponds to the affix {Customer}?. Reference the deployment parameters with \'deploymentParameter.customer\'.')
-  customer: string?
-  @description('Corresponds to the affix {Prefix}.')
+  organization: string?
   prefix: resourceType
-  @description('Corresponds to the affix {Name}. Abbreviation of the application name, likewise used in \'resourceTags.applicationName\'.')
   @maxLength(12)
   name: string
-  @description('Corresponds to the affix {Region}.')
   region: regionName
-  @description('Corresponds to the affix {Environment}.')
   environment: environmentType?
-  @description('Corresponds to the affix {Region}. Use a squential number or one these values: \'akscluster\', \'aksnode\', \'azbackup\'.')
   suffix: string?
 }
 
@@ -175,14 +169,14 @@ func newNameExtended1(nameValue resourceName) object => {
   generic: toLower(contains(nameValue, 'suffix')
     ? format(
         '{0}-{1}-{2}-{3}-{4}',
-        nameValue.customer,
+        nameValue.organization,
         setResourceType(nameValue.prefix),
         nameValue.name,
         setRegionAbbreviation(nameValue.region),
         nameValue.suffix
       )
     : format('{0}-{1}-{2}-{3}', 
-        nameValue.customer, 
+        nameValue.organization, 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
         setRegionAbbreviation(nameValue.region)
@@ -190,14 +184,14 @@ func newNameExtended1(nameValue resourceName) object => {
   special: toLower(contains(nameValue, 'suffix')
     ? format(
         '{0}{1}{2}{3}{4}',
-        nameValue.customer,
+        nameValue.organization,
         setResourceType(nameValue.prefix),
         nameValue.name,
         setRegionAbbreviation(nameValue.region),
         nameValue.suffix
       )
     : format('{0}{1}{2}{3}', 
-        nameValue.customer, 
+        nameValue.organization, 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
         setRegionAbbreviation(nameValue.region)
@@ -209,7 +203,7 @@ func newNameExtended2(nameValue resourceName) object => {
   generic: toLower(contains(nameValue, 'suffix')
     ? format(
         '{0}-{1}-{2}-{3}-{4}-{5}',
-        nameValue.customer,
+        nameValue.organization,
         setResourceType(nameValue.prefix),
         nameValue.name,
         setRegionAbbreviation(nameValue.region),
@@ -219,7 +213,7 @@ func newNameExtended2(nameValue resourceName) object => {
       )
     : format(
         '{0}-{1}-{2}-{3}-{4}',
-        nameValue.customer,
+        nameValue.organization,
         setResourceType(nameValue.prefix),
         nameValue.name,
         setRegionAbbreviation(nameValue.region),
@@ -229,7 +223,7 @@ func newNameExtended2(nameValue resourceName) object => {
   special: toLower(contains(nameValue, 'suffix')
     ? format(
         '{0}{1}{2}{3}{4}{5}',
-        nameValue.customer,
+        nameValue.organization,
         setResourceType(nameValue.prefix),
         nameValue.name,
         setRegionAbbreviation(nameValue.region),
@@ -239,7 +233,7 @@ func newNameExtended2(nameValue resourceName) object => {
       )
     : format(
         '{0}{1}{2}{3}{4}',
-        nameValue.customer,
+        nameValue.organization,
         setResourceType(nameValue.prefix),
         nameValue.name,
         setRegionAbbreviation(nameValue.region),

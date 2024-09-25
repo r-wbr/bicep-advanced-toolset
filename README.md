@@ -1,5 +1,5 @@
 # Bicep Advanced Toolset (BAT)
-![Static Badge](https://img.shields.io/badge/Version-2.0.1-green) ![Static Badge](https://img.shields.io/badge/Bicep-0.29.47-blue)
+![Static Badge](https://img.shields.io/badge/Version-2.0.2-green) ![Static Badge](https://img.shields.io/badge/Bicep-0.29.47-blue)
 
 ![logo](/img/logo256.png)
 
@@ -39,7 +39,7 @@ param moduleResourceTags setResourceTags = {
 
 @description('These object defines the values for the resource name.')
 param moduleResourceName setResourceName = {
-  customer: deploymentParameters.customer
+  organization: deploymentParameters.organization
   prefix: 'Resource group'
   name: 'testapp'
   region: 'westeurope'

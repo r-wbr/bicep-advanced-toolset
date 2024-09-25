@@ -1,7 +1,6 @@
 {
   "experimentalFeaturesEnabled": {
     "extensibility": true,
-    "dynamicTypeLoading": true,
     "optionalModuleNames": true,
     "sourceMapping": true,
     "resourceDerivedTypes": true,

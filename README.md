@@ -3,9 +3,26 @@
 
 ![logo](/img/logo256.png)
 
-The **Bicep Advanced Toolset (BAT)** provides a set of user defined functions, data types and library files to simplify the creation of resources and implementing a naming and tagging convention. These functions and data types are used work threw shared bicep files, which are used in main templates with the *import* function. 
+The **Bicep Advanced Toolset (BAT)** provides a set of archetypes to simplify the creation and configuration of resources before a single template is written. The archetypes consist of user defined functions, data types and library files. The toolset helps implementing a consistent naming and tagging convention which can be fully integrated in every template.
 
-# Resources
+> [!CAUTION]
+> For the toolset to function, experimental features must be activated in the bicep config file!
+
+# Features
+
+- Name Generator: The name generator enables the creation of consistent resource names, for all occasions.
+- Name Patterns: Four different pre-defined name patterns are included:
+  - Default 1: Prefix-Name-Region-Suffix
+  - Default 2: Prefix-Name-Region-Environment-Suffix
+  - Extended 1: Prefix-Name-Region-Suffix
+  - Extended 2: Prefix-Name-Region-Environment-Suffix
+- Library Files: Centralized and shared storage of information and values.
+
+## Archetypes
+
+
+
+### Resources
 
 The archetype **resources** include four different naming patterns for defining resource names, as well as the associated data types. Each pattern consists of functions to generate a generic, special or unique name, where in the special and unique name hyphens are excluded. The abbreviations for resource types are stored in the library file.
 
@@ -66,7 +83,7 @@ output resourceUniqueName = rgmq7o6l5h33fmy
 */
 ```
 
-# Locations
+### Locations
 
 The archetype **locations** provides data types for consistent selection of Azure regions and a function to generate abbreviations, based on pre-defined values in the library file.
 
@@ -80,7 +97,7 @@ output regionAbbreviation = euw
 */
 ```
 
-# Deployment
+### Deployment
 
 The archetype **deployment** contains data types for a centralized object, containing all neede values for the deployment. The object can be inherited by child modules.
 
@@ -95,7 +112,7 @@ param deploymentParameters = {
 }
 ```
 
-# Authorization
+### Authorization
 
 The archetype **authorization** provides data types and a library file for role definitions
 

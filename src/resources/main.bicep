@@ -1,17 +1,8 @@
-# Name patterns
+@description('Import archetypes from library.')
+import { newResourceName, newUniqueResourceName, newSpecialResourceName, resourceName, resourceTags } from '../../lib/resource/shared.bicep'
+import { setRoleAssignment, newPolicyDefinitionName, newPolicyAssignmentName } from '../../lib/authorization/shared.bicep'
 
-The following default name patterns are included:
-  - Default 1: Prefix-Name-Region-Suffix
-  - Default 2: Prefix-Name-Region-Environment-Suffix
-The following extended name patterns are included, providing the possibility to include a custom prefix:
-  - Extended 1: Custom-Prefix-Name-Region-Suffix
-  - Extended 2: Custom-Prefix-Name-Region-Environment-Suffix
 
-> [!TIP]
-> The 'suffix' in the name pattern is optional. If not defined in the input object, no suffix is created.
-
-Name generation in 'main.bicep':
-```bicep
 param exampleResourceName resourceName = {
   organization: 'foo'
   name: 'example'
@@ -57,36 +48,3 @@ output exampleNames object = {
     policyAssignment: newPolicyAssignmentName('example2')
   }
 }
-```
-
-Output values after deployment:
-```json
-{
-    "default1": {
-        "generic": "rg-example-euw",
-        "special": "rgexampleeuw",
-        "withSuffix": "rg-example-euw-001"
-    },
-    "default2": {
-        "generic": "rg-example-euw-test",
-        "special": "rgexampleeuwtest"
-    },
-    "extended1": {
-        "generic": "foo-rg-example-euw",
-        "special": "foorgexampleeuw",
-        "withSuffix": "foo-rg-example-euw-001"
-    },
-    "extended2": {
-        "generic": "foo-rg-example-euw-test",
-        "special": "foorgexampleeuwtest"
-    },
-    "policy1": {
-        "policyDefinition": "pd-57748e4a-5e71-5cdd",
-        "policyAssignment": "pa-57748e4a-5e71-5cdd"
-    },
-    "policy2": {
-        "policyDefinition": "pd-489ae212-2b5e-52c7",
-        "policyAssignment": "pa-489ae212-2b5e-52c7"
-    }
-}
-```

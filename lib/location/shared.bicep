@@ -1,6 +1,5 @@
 metadata author = 'rwbr@outlook.de'
 metadata repository = 'https://github.com/r-wbr/bicep-advanced-toolset'
-metadata version = '2.1.3'
 
 @export()
 @description('Selects the appropriate abbreviation for locations.')

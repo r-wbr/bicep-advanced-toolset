@@ -1,5 +1,5 @@
 # Bicep Advanced Toolset (BAT)
-![Static Badge](https://img.shields.io/badge/Version-2.1.3-green) ![Static Badge](https://img.shields.io/badge/Bicep-0.30.23-blue)
+![Static Badge](https://img.shields.io/badge/Version-2.1.4-green) ![Static Badge](https://img.shields.io/badge/Bicep-0.30.23-blue)
 
 ![logo](/img/logo256.png)
 

@@ -1,5 +1,6 @@
-# Examples
-Output generation in 'main.bicep'.
+# Name patterns
+
+Name generation in 'main.bicep':
 ```bicep
 output names object = {
   default1: {
@@ -28,25 +29,24 @@ output names object = {
   }
 }
 ```
-***
-Output values after deployment.
+Output values after deployment:
 ```json
 {
     "default1": {
-        "generic": "rg-bcptls-euw-001",
-        "special": "rgbcptlseuw001"
+        "generic": "rg-example-euw-001",
+        "special": "rgexampleeuw001"
     },
     "default2": {
-        "generic": "rg-bcptls-euw-dev-001",
-        "special": "rgbcptlseuwdev001"
+        "generic": "rg-example-euw-dev-001",
+        "special": "rgexampleeuwdev001"
     },
     "extended1": {
-        "generic": "foo-rg-bcptls-euw-001",
-        "special": "foorgbcptlseuw001"
+        "generic": "foo-rg-example-euw-001",
+        "special": "foorgexampleeuw001"
     },
     "extended2": {
-        "generic": "foo-rg-bcptls-euw-dev-001",
-        "special": "foorgbcptlseuwdev001"
+        "generic": "foo-rg-example-euw-dev-001",
+        "special": "foorgexampleeuwdev001"
     },
     "policy1": {
         "policyDefinition": "pd-7238a963-b977-535c",
@@ -58,4 +58,3 @@ Output values after deployment.
     }
 }
 ```
-***

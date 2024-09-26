@@ -19,7 +19,7 @@ resource exampleRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-
       principalId: managedIdentity.PrincipalId
       principalType: 'ServicePrincipal'
       roleDefinitionId: resourceId(
-        roleDefinitionList.resourceProvider,
+        roleDefinitionList['Resource Provider'],
         roleDefinitionList[i]
       )
     }

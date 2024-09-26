@@ -24,23 +24,6 @@ type resourceTags = {
   Owner: string
 }
 
-type default1ResourceName = {
-  prefix: resourceType
-  @maxLength(12)
-  name: string
-  region: regionName
-  suffix: string?
-}
-
-type default2ResourceName = {
-  prefix: resourceType
-  @maxLength(12)
-  name: string
-  region: regionName
-  environment: environmentType
-  suffix: string?
-}
-
 @export()
 type resourceName = {
   organization: string?

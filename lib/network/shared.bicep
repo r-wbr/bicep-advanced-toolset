@@ -2,6 +2,8 @@ metadata author = 'rwbr@outlook.de'
 metadata repository = 'https://github.com/r-wbr/bicep-advanced-toolset'
 metadata version = '2.1.3'
 
+// WIP - Not ready for production usage.
+
 func setAddressSpaceConnectivity(addressSpace string) string => cidrSubnet(addressSpace, 21, 30)
 
 func setAddressSpaceIdentity(addressSpace string) string => cidrSubnet(addressSpace, 22, 59)

@@ -1,6 +1,5 @@
 metadata author = 'rwbr@outlook.de'
 metadata repository = 'https://github.com/r-wbr/bicep-advanced-toolset'
-metadata version = '2.1.3'
 
 @description('Import library for deployment archetypes.')
 @export()
@@ -23,6 +22,23 @@ type resourceTags = {
   DeploymentDate: string
   Environment: environmentType
   Owner: string
+}
+
+type default1ResourceName = {
+  prefix: resourceType
+  @maxLength(12)
+  name: string
+  region: regionName
+  suffix: string?
+}
+
+type default2ResourceName = {
+  prefix: resourceType
+  @maxLength(12)
+  name: string
+  region: regionName
+  environment: environmentType
+  suffix: string?
 }
 
 @export()
@@ -137,7 +153,7 @@ func newNameDefault2(nameValue resourceName) object => {
         setEnvironment(nameValue.environment),
         nameValue.suffix
       )
-    : format('{0}-{1}-{2}-{3}-{4}-{5}', 
+    : format('{0}-{1}-{2}-{3}', 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
         getRegionAbbreviation(nameValue.region),
@@ -154,7 +170,7 @@ func newNameDefault2(nameValue resourceName) object => {
         setEnvironment(nameValue.environment),
         nameValue.suffix
       )
-    : format('{0}{1}{2}{3}{4}{5}', 
+    : format('{0}{1}{2}{3}', 
         setResourceType(nameValue.prefix),
         nameValue.name, 
         getRegionAbbreviation(nameValue.region),

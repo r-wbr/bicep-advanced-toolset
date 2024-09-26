@@ -1,5 +1,15 @@
 # Name patterns
 
+The following default name patterns are included:
+  - Default 1: Prefix-Name-Region-Suffix
+  - Default 2: Prefix-Name-Region-Environment-Suffix
+The following extended name patterns are included, providing the possibility to include a custom prefix:
+  - Extended 1: Custom-Prefix-Name-Region-Suffix
+  - Extended 2: Custom-Prefix-Name-Region-Environment-Suffix
+
+> [!TIP]
+> The 'suffix' in the name pattern is optional. If not defined in the input object, no suffix is created.
+
 Name generation in 'main.bicep':
 ```bicep
 output names object = {
@@ -29,6 +39,7 @@ output names object = {
   }
 }
 ```
+
 Output values after deployment:
 ```json
 {

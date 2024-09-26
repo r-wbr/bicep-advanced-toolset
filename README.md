@@ -13,11 +13,7 @@ The **Bicep Advanced Toolset (BAT)** provides a solution to simplify the creatio
 # Features
 
 - Name generation for resources with the possibility to generate default, special and unique names.
-- Integrated name patterns for different requirements:
-  - Default 1: Prefix-Name-Region-Suffix
-  - Default 2: Prefix-Name-Region-Environment-Suffix
-  - Extended 1: Prefix-Name-Region-Suffix
-  - Extended 2: Prefix-Name-Region-Environment-Suffix
+- Integrated [name patterns](/docs/namePatterns.md) for different requirements.
 - Automatic selection of role definitions ids, region and resource type abbreviations.
 - Includes a set of tutorials, examples and more!
 
@@ -34,4 +30,4 @@ Instructions how to use each archetype are listed separately:
 
 # Miscellaneous
 
-Create role and policy assignments with automated identity selection: [💪 Template](/src/authorization/main.bicep)
+- [Create role and policy assignments with automated identity selection.](/src/authorization/main.bicep)

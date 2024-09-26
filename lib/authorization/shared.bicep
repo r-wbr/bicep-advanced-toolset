@@ -1,12 +1,15 @@
 metadata author = 'rwbr@outlook.de'
-metadata repository = 'https://github.com/r-wbr/bicep-tools'
+metadata repository = 'https://github.com/r-wbr/bicep-advanced-toolset'
+metadata version = '2.1.3'
 
 @description('Import library for location archetypes.')
-import { regionName } from '../locations/shared.bicep'
+import { regionName } from '../location/shared.bicep'
 
+@description('Creates a new guid for policy definitions based on string input.')
 @export()
 func newPolicyDefinitionName(guidValue string) string => 'pd-${substring(guid(guidValue), 0, 18)}'
 
+@description('Creates a new guid for policy assignments based on string input.')
 @export()
 func newPolicyAssignmentName(guidValue string) string => 'pa-${substring(guid(guidValue), 0, 18)}'
 
@@ -18,11 +21,14 @@ func setRoleAssignment(principalTypeValue principalType, roleValue roleDefinitio
 }
 
 @description('Selects the resource id for the role definitions using the role definition library.')
-func getRoleResourceId(roleValue roleDefinition) string =>
+@export()
+func setRoleResourceId(roleValue roleDefinition) string =>
   subscriptionResourceId('Microsoft.Authorization/roleDefinitions', loadYamlContent('library.yaml')[roleValue])
 
+@description('Defines the name and properties of the role assignment.')
+@export()
 func setRoleAssignmentProperties(roleValue roleDefinition, principalId string, principalTypeValue principalType) roleAssignmentProperties => {
-  roleDefinitionId: getRoleResourceId(roleValue)
+  roleDefinitionId: setRoleResourceId(roleValue)
   principalId: principalId
   principalType: principalTypeValue
 }

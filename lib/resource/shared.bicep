@@ -1,18 +1,17 @@
 metadata author = 'rwbr@outlook.de'
-metadata repository = 'https://github.com/r-wbr/bicep-tools'
+metadata repository = 'https://github.com/r-wbr/bicep-advanced-toolset'
+metadata version = '2.1.3'
 
 @description('Import library for deployment archetypes.')
 @export()
-import { setEnvironment as setEnvironment } from '../deployment/shared.bicep'
-import { deploymentParameters as deploymentParameters } from '../deployment/shared.bicep'
+import { setEnvironment, deploymentParameters } from '../deployment/shared.bicep'
 import { namePattern as namePatternType } from '../deployment/shared.bicep'
 import { environment as environmentType } from '../deployment/shared.bicep'
 import { businessCriticality as businessCriticalityType } from '../deployment/shared.bicep'
 import { dataClassification as dataClassificationType } from '../deployment/shared.bicep'
 
 @description('Import library for location archetypes.')
-import { setRegionAbbreviation } from '../locations/shared.bicep'
-import { regionName } from '../locations/shared.bicep'
+import { getRegionAbbreviation, regionName } from '../location/shared.bicep'
 
 @export()
 type resourceTags = {
@@ -104,25 +103,25 @@ func newNameDefault1(nameValue resourceName) object => {
         '{0}-{1}-{2}-{3}', 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
-        setRegionAbbreviation(nameValue.region), 
+        getRegionAbbreviation(nameValue.region), 
         nameValue.suffix)
     : format(
         '{0}-{1}-{2}', 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
-        setRegionAbbreviation(nameValue.region)))
+        getRegionAbbreviation(nameValue.region)))
   special: toLower(contains(nameValue, 'suffix')
     ? format(
         '{0}{1}{2}{3}', 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
-        setRegionAbbreviation(nameValue.region), 
+        getRegionAbbreviation(nameValue.region), 
         nameValue.suffix)
     : format(
         '{0}{1}{2}', 
         setResourceType(nameValue.prefix),
         nameValue.name, 
-        setRegionAbbreviation(nameValue.region)
+        getRegionAbbreviation(nameValue.region)
       ))
 }
 
@@ -133,7 +132,7 @@ func newNameDefault2(nameValue resourceName) object => {
         '{0}-{1}-{2}-{3}-{4}',
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setRegionAbbreviation(nameValue.region),
+        getRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321
         setEnvironment(nameValue.environment),
         nameValue.suffix
@@ -141,7 +140,7 @@ func newNameDefault2(nameValue resourceName) object => {
     : format('{0}-{1}-{2}-{3}-{4}-{5}', 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
-        setRegionAbbreviation(nameValue.region),
+        getRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321 
         setEnvironment(nameValue.environment)
       ))
@@ -150,7 +149,7 @@ func newNameDefault2(nameValue resourceName) object => {
         '{0}{1}{2}{3}{4}',
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setRegionAbbreviation(nameValue.region),
+        getRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321
         setEnvironment(nameValue.environment),
         nameValue.suffix
@@ -158,7 +157,7 @@ func newNameDefault2(nameValue resourceName) object => {
     : format('{0}{1}{2}{3}{4}{5}', 
         setResourceType(nameValue.prefix),
         nameValue.name, 
-        setRegionAbbreviation(nameValue.region),
+        getRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321 
         setEnvironment(nameValue.environment)
       ))
@@ -172,14 +171,14 @@ func newNameExtended1(nameValue resourceName) object => {
         nameValue.organization,
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setRegionAbbreviation(nameValue.region),
+        getRegionAbbreviation(nameValue.region),
         nameValue.suffix
       )
     : format('{0}-{1}-{2}-{3}', 
         nameValue.organization, 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
-        setRegionAbbreviation(nameValue.region)
+        getRegionAbbreviation(nameValue.region)
       ))
   special: toLower(contains(nameValue, 'suffix')
     ? format(
@@ -187,14 +186,14 @@ func newNameExtended1(nameValue resourceName) object => {
         nameValue.organization,
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setRegionAbbreviation(nameValue.region),
+        getRegionAbbreviation(nameValue.region),
         nameValue.suffix
       )
     : format('{0}{1}{2}{3}', 
         nameValue.organization, 
         setResourceType(nameValue.prefix), 
         nameValue.name, 
-        setRegionAbbreviation(nameValue.region)
+        getRegionAbbreviation(nameValue.region)
       ))
 }
 
@@ -206,7 +205,7 @@ func newNameExtended2(nameValue resourceName) object => {
         nameValue.organization,
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setRegionAbbreviation(nameValue.region),
+        getRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321
         setEnvironment(nameValue.environment),
         nameValue.suffix
@@ -216,7 +215,7 @@ func newNameExtended2(nameValue resourceName) object => {
         nameValue.organization,
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setRegionAbbreviation(nameValue.region),
+        getRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321
         setEnvironment(nameValue.environment)
       ))
@@ -226,7 +225,7 @@ func newNameExtended2(nameValue resourceName) object => {
         nameValue.organization,
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setRegionAbbreviation(nameValue.region),
+        getRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321
         setEnvironment(nameValue.environment),
         nameValue.suffix
@@ -236,7 +235,7 @@ func newNameExtended2(nameValue resourceName) object => {
         nameValue.organization,
         setResourceType(nameValue.prefix),
         nameValue.name,
-        setRegionAbbreviation(nameValue.region),
+        getRegionAbbreviation(nameValue.region),
         #disable-next-line BCP321
         setEnvironment(nameValue.environment)
       ))
@@ -447,26 +446,3 @@ type resourceType =
 | 'Virtual desktop workspace'
 | 'Virtual desktop scaling plan'
 | 'Subscription'
-
-func setAddressSpaceConnectivity(addressSpace string) string => cidrSubnet(addressSpace, 21, 30)
-
-func setAddressSpaceIdentity(addressSpace string) string => cidrSubnet(addressSpace, 22, 59)
-
-func setAddressSpaceManagement(addressSpace string) string => cidrSubnet(addressSpace, 22, 58)
-
-func setAddressSpacehubVirtualNetworkPrimary(addressSpace string) string => cidrSubnet(addressSpace, 23, 124)
-
-func setAddressSpacehubVirtualNetworkSecondary(addressSpace string) string => cidrSubnet(addressSpace, 23, 125)
-
-func setAddressSpacehubVirtualWan(addressSpace string) string => cidrSubnet(addressSpace, 23, 126)
-
-@export()
-@description('Calculates the address space for the corresponsing item.')
-func getAddressSpace(addressSpace string) object => {
-  connectivity: setAddressSpaceConnectivity(addressSpace)
-  identity: setAddressSpaceIdentity(addressSpace)
-  management: setAddressSpaceManagement(addressSpace)
-  hubVirtualNetworkPrimary: setAddressSpacehubVirtualNetworkPrimary(addressSpace)
-  hubVirtualNetworkSecondary: setAddressSpacehubVirtualNetworkSecondary(addressSpace)
-  virtualWan: setAddressSpacehubVirtualWan(addressSpace)
-}

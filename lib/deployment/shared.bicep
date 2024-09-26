@@ -1,8 +1,9 @@
 metadata author = 'rwbr@outlook.de'
-metadata repository = 'https://github.com/r-wbr/bicep-tools'
+metadata repository = 'https://github.com/r-wbr/bicep-advanced-toolset'
+metadata version = '2.1.3'
 
 @description('Import library for location archetypes.')
-import { regionName } from '../locations/shared.bicep'
+import { regionName } from '../location/shared.bicep'
 
 @description('Selects the appropriate abbreviation for environments.')
 @export()

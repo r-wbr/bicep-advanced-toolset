@@ -1,12 +1,13 @@
 metadata author = 'rwbr@outlook.de'
-metadata repository = 'https://github.com/r-wbr/bicep-tools'
+metadata repository = 'https://github.com/r-wbr/bicep-advanced-toolset'
+metadata version = '2.1.3'
 
 @export()
 @description('Selects the appropriate abbreviation for locations.')
-func setRegionAbbreviation(regionValue regionName) string => getRegionAbbreviation()[regionValue]
+func getRegionAbbreviation(regionValue regionName) string => setRegionAbbreviation()[regionValue]
 
 @description('Imports and provides the library for locations.')
-func getRegionAbbreviation() object => loadYamlContent('../locations/library.yaml')
+func setRegionAbbreviation() object => loadYamlContent('../location/library.yaml')
 
 @description('Defines available values for locations.')
 @export()

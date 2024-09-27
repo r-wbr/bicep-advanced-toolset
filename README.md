@@ -1,33 +1,23 @@
 # Bicep Advanced Toolset (BAT)
-![Static Badge](https://img.shields.io/badge/Version-2.1.4-green) ![Static Badge](https://img.shields.io/badge/Bicep-0.30.23-blue)
+![Static Badge](https://img.shields.io/badge/Version-0.2.0-green) ![Static Badge](https://img.shields.io/badge/Bicep-0.30.23-blue)
 
 ![logo](/img/logo256.png)
 
 # Description
 
-The **Bicep Advanced Toolset (BAT)** provides a solution to simplify the creation and configuration of resources before a single template is written. The toolset consist of user defined functions, data types and library files, separated into archetypes. This helps implementing a consistent naming and tagging convention which can be fully integrated in every template.
+The Azure community provides a variety of documents and tools to streamline the creation of consistent templates, using scripts or web apps. Unfortunately, the existing tools cannot be integrated into the template creation process without much effort. To provide an easy-to-integrate solution to this problem, I designed the **Bicep Advanced Toolset (BAT)**. This toolset aims to provide a solution to simplify the creation of Bicep templates without external tools.
 
 > [!CAUTION]
-> For the toolset to function, experimental features must be activated in the bicep config file!
+> For the toolset to function, experimental features must be activated in the Bicep config file!
 
 # Features
 
-- Name generation for resources with the possibility to generate default, special and unique names.
-- Integrated [name patterns](/docs/namePatterns.md) for different requirements.
-- Automatic selection of role definition ids, region and resource type abbreviations.
-- Includes a set of tutorials, examples and more!
+- Name generator with the possibility to generate basic names for resources, or special names for storage accounts.
+- Integrated name patterns for different requirements, which can be extended with custom patterns.
+- Fully written in 💪 Bicep.
 
-# How it works
+# Usage
 
-The appropriate functions and data types must first be imported into the template. Functions for direct usage in the template start with `new` or `get`, whereby helper functions start with `set` or `select` and dont need to be imported.
-
-Instructions how to use each archetype are listed separately:
-
-- [Resource](/docs/archetypeResource.md)
-- [Location](/docs/archetypeLocation.md)
-- [Deployment](/docs/archetypeDeployment.md)
-- [Authorization](/docs/archetypeAuthorization.md)
-
-# Miscellaneous
-
-- [Create role and policy assignments with automated identity selection.](/src/authorization/main.bicep)
+Instructions how to use the name generator and extend the name patterns can be found here:
+- [Name generator](/docs/nameGenerator.md)
+- [Name patterns](/docs/namePatterns.md)

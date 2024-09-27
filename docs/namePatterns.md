@@ -1,4 +1,6 @@
-# Name patterns
+# Name Patterns
+
+Name patterns define the logic how the structure of a name is build, and which affixes are included in the name.
 
 The following default name patterns are included:
   - Default 1: Prefix-Name-Region-Suffix
@@ -7,86 +9,66 @@ The following extended name patterns are included, providing the possibility to 
   - Extended 1: Custom-Prefix-Name-Region-Suffix
   - Extended 2: Custom-Prefix-Name-Region-Environment-Suffix
 
-> [!TIP]
-> The 'suffix' in the name pattern is optional. If not defined in the input object, no suffix is created.
+# Usage
 
-Name generation in 'main.bicep':
+Each name pattern need specific input, based on the pattern logic. If a function is fed with the wrong input, likely a missing object property, the deployment will fail. All name patterns should be included in the `patternDefinitions` data type.
+
+> [!NOTE]
+> The suffix in the name pattern is optional. If not defined in the input object, no suffix is created by the function.
+
 ```bicep
-param exampleResourceName resourceName = {
-  organization: 'foo'
-  name: 'example'
-  prefix: 'Resource group'
-  region: 'westeurope'
-  environment: 'Test'
-}
-
-param exampleResourceNameWithSuffix resourceName = {
-  organization: 'foo'
-  name: 'example'
-  prefix: 'Resource group'
-  region: 'westeurope'
-  environment: 'Test'
-  suffix: '001'
-}
-
-output exampleNames object = {
+@description('Defined available values for name patterns.')
+type patternDefinitions = {
   default1: {
-    generic: newResourceName(exampleResourceName, 'default1')
-    special: newSpecialResourceName(exampleResourceName, 'default1')
-    withSuffix: newResourceName(exampleResourceNameWithSuffix, 'default1')
+    pattern: 'default1'
+    prefix: sharedDefinitions.resourceTypes    
+    @maxLength(12)
+    name: string
+    region: sharedDefinitions.regionNames
+    suffix: string?
   }
   default2: {
-    generic: newResourceName(exampleResourceName, 'default2')
-    special: newSpecialResourceName(exampleResourceName, 'default2')
+    pattern: 'default2'
+    prefix: sharedDefinitions.resourceTypes      
+    @maxLength(12)
+    name: string
+    region: sharedDefinitions.regionNames
+    environment: sharedDefinitions.environment
+    suffix: string?
   }
   extended1: {
-    generic: newResourceName(exampleResourceName, 'extended1')
-    special: newSpecialResourceName(exampleResourceName, 'extended1')
-    withSuffix: newResourceName(exampleResourceNameWithSuffix, 'extended1')
+    pattern: 'extended1'
+    @maxLength(4)
+    organization: string
+    prefix: sharedDefinitions.resourceTypes      
+    @maxLength(12)
+    name: string
+    region: sharedDefinitions.regionNames
+    suffix: string?
   }
   extended2: {
-    generic: newResourceName(exampleResourceName, 'extended2')
-    special: newSpecialResourceName(exampleResourceName, 'extended2')
-  }
-  policy1: {
-    policyDefinition: newPolicyDefinitionName('example1')
-    policyAssignment: newPolicyAssignmentName('example1')
-  }
-  policy2: {
-    policyDefinition: newPolicyDefinitionName('example2')
-    policyAssignment: newPolicyAssignmentName('example2')
+    pattern: 'extended2'
+    @maxLength(4)
+    organization: string
+    prefix: sharedDefinitions.resourceTypes      
+    @maxLength(12)
+    name: string
+    region: sharedDefinitions.regionNames
+    environment: sharedDefinitions.environment
+    suffix: string?
   }
 }
 ```
 
-Output values after deployment:
-```json
-{
-    "default1": {
-        "generic": "rg-example-euw",
-        "special": "rgexampleeuw",
-        "withSuffix": "rg-example-euw-001"
-    },
-    "default2": {
-        "generic": "rg-example-euw-test",
-        "special": "rgexampleeuwtest"
-    },
-    "extended1": {
-        "generic": "foo-rg-example-euw",
-        "special": "foorgexampleeuw",
-        "withSuffix": "foo-rg-example-euw-001"
-    },
-    "extended2": {
-        "generic": "foo-rg-example-euw-test",
-        "special": "foorgexampleeuwtest"
-    },
-    "policy1": {
-        "policyDefinition": "pd-57748e4a-5e71-5cdd",
-        "policyAssignment": "pa-57748e4a-5e71-5cdd"
-    },
-    "policy2": {
-        "policyDefinition": "pd-489ae212-2b5e-52c7",
-        "policyAssignment": "pa-489ae212-2b5e-52c7"
-    }
-}
+The available name patterns must be included in the input object for the resource name. The tagged union data type `pattern` is used to include the pattern name, which is needed for the helper functions `setResourceName()` and `setSpecialResourceName()` to identify the pattern.
+
+```bicep
+@description('Defined available values for resource name input object.')
+@export()
+@discriminator('pattern')
+type inputResourceName =
+  | patternDefinitions.default1
+  | patternDefinitions.default2
+  | patternDefinitions.extended1
+  | patternDefinitions.extended2
 ```

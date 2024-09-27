@@ -7,9 +7,6 @@
 
 The Azure community provides a variety of documents and tools to streamline the creation of consistent templates, using scripts or web apps. Unfortunately, the existing tools cannot be integrated into the template creation process without much effort. To provide an easy-to-integrate solution to this problem, I designed the **Bicep Advanced Toolset (BAT)**. This toolset aims to provide a solution to simplify the creation of Bicep templates without external tools.
 
-> [!CAUTION]
-> For the toolset to function, experimental features must be activated in the Bicep config file!
-
 # Features
 
 - Name generator with the possibility to generate basic names for resources, or special names for storage accounts.

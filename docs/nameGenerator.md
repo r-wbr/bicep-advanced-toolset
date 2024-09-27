@@ -2,9 +2,6 @@
 
 The name generator includes four different naming patterns for defining resource names from a object, as well as the associated input objects. Each pattern consists of functions to generate a generic, special or unique name, where in the special and unique name hyphens are excluded. The abbreviations for resource types, regions and environments are stored in library files.
 
-> [!TIP]
-> The 💪 template to generate a bunch of example names can be found [here](/src/nameGen/main.bicep)
-
 # Usage
 
 Functions to generate a default or special name need a specific `inputResourceName` object, which defines the available values for the specific name pattern.

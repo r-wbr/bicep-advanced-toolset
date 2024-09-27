@@ -2,9 +2,10 @@
 
 Name patterns define the logic how the structure of a name is build, and which affixes are included in the name.
 
-The following default name patterns are included:
+The following default name patterns are included:  
   - Default 1: Prefix-Name-Region-Suffix
   - Default 2: Prefix-Name-Region-Environment-Suffix
+  
 The following extended name patterns are included, providing the possibility to include a custom prefix:
   - Extended 1: Custom-Prefix-Name-Region-Suffix
   - Extended 2: Custom-Prefix-Name-Region-Environment-Suffix

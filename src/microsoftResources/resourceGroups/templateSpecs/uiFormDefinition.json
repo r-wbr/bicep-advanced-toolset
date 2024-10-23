@@ -40,13 +40,13 @@
                 "defaultValue": "[[deployment().location]",
                 "toolTip": "Define parameters to form from deployment values.",
                 "constraints": {
-                  "required": false,
+                  "required": true,
                   "regex": "",
                   "validationMessage": "",
                   "validations": []
                 },
                 "infoMessages": [],
-                "visible": false
+                "visible": true
               },
               {
                 "name": "deploymentDate",

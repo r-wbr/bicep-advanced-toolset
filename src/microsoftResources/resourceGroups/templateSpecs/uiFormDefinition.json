@@ -1,0 +1,121 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2021-09-09/uiFormDefinition.schema.json",
+    "view": {
+        "kind": "Form",
+        "properties": {
+            "title": "Test Form View",
+            "steps": [
+                {
+                    "name": "basics",
+                    "label": "Basics",
+                    "elements": [
+                        {
+                            "name": "resourceScope",
+                            "type": "Microsoft.Common.ResourceScope",
+                            "location": {
+                                "resourceTypes": []
+                            }
+                        },
+                        {
+                            "name": "location",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "Location",
+                            "subLabel": "",
+                            "defaultValue": "",
+                            "toolTip": "",
+                            "constraints": {
+                                "required": false,
+                                "regex": "",
+                                "validationMessage": "",
+                                "validations": []
+                            },
+                            "infoMessages": [],
+                            "visible": false
+                        },
+                        {
+                            "name": "userName",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "User Name",
+                            "subLabel": "",
+                            "defaultValue": "",
+                            "toolTip": "",
+                            "constraints": {
+                                "required": true,
+                                "regex": "",
+                                "validationMessage": "",
+                                "validations": []
+                            },
+                            "infoMessages": [],
+                            "visible": true
+                        },
+                        {
+                            "name": "applicationName",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "Application Name",
+                            "subLabel": "",
+                            "defaultValue": "",
+                            "toolTip": "",
+                            "constraints": {
+                                "required": true,
+                                "regex": "",
+                                "validationMessage": "",
+                                "validations": [
+                                    {
+                                        "isValid": "[or(or(empty(steps('basics').applicationName),and(not(startsWith(steps('basics').applicationName,'[[')),startsWith(steps('basics').applicationName,'['),endsWith(steps('basics').applicationName,']'),greater(indexOf(steps('basics').applicationName,'('),-1),greater(indexOf(steps('basics').applicationName,')'),-1))),lessOrEquals(length(steps('basics').applicationName),12))]",
+                                        "message": "The value must have a length of at most 12."
+                                    }
+                                ]
+                            },
+                            "infoMessages": [],
+                            "visible": true
+                        },
+                        {
+                            "name": "moduleResourceName",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "Module Resource Name",
+                            "subLabel": "",
+                            "defaultValue": "",
+                            "toolTip": "Defined available values for resource name input object.",
+                            "constraints": {
+                                "required": false,
+                                "regex": "",
+                                "validationMessage": "",
+                                "validations": []
+                            },
+                            "infoMessages": [],
+                            "visible": false
+                        },
+                        {
+                            "name": "moduleResourceTags",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "Module Resource Tags",
+                            "subLabel": "",
+                            "defaultValue": "",
+                            "toolTip": "",
+                            "constraints": {
+                                "required": false,
+                                "regex": "",
+                                "validationMessage": "",
+                                "validations": []
+                            },
+                            "infoMessages": [],
+                            "visible": false
+                        }
+                    ]
+                }
+            ]
+        },
+        "outputs": {
+            "kind": "Subscription",
+            "location": "[steps('basics').resourceScope.location.name]",
+            "subscriptionId": "[steps('basics').resourceScope.subscription.id]",
+            "parameters": {
+                "location": "[steps('basics').location]",
+                "userName": "[steps('basics').userName]",
+                "applicationName": "[steps('basics').applicationName]",
+                "moduleResourceName": "[steps('basics').moduleResourceName]",
+                "moduleResourceTags": "[steps('basics').moduleResourceTags]"
+            }
+        }
+    }
+}

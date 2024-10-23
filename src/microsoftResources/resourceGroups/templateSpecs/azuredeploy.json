@@ -1,0 +1,1094 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "languageVersion": "2.1-experimental",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_EXPERIMENTAL_WARNING": "This template uses ARM features that are experimental. Experimental features should be enabled for testing purposes only, as there are no guarantees about the quality or stability of these features. Do not enable these settings for any production usage, or your production environment may be subject to breaking.",
+    "_EXPERIMENTAL_FEATURES_ENABLED": [
+      "Extensibility"
+    ],
+    "_generator": {
+      "name": "bicep",
+      "version": "0.30.23.60470",
+      "templateHash": "4716223918570655265"
+    },
+    "author": "rwbr@outlook.de",
+    "repository": "https://github.com/r-wbr/bicep-advanced-toolset"
+  },
+  "definitions": {
+    "_1.patternDefinitions": {
+      "type": "object",
+      "properties": {
+        "default1": {
+          "type": "object",
+          "properties": {
+            "pattern": {
+              "type": "string",
+              "allowedValues": [
+                "default1"
+              ]
+            },
+            "prefix": {
+              "$ref": "#/definitions/_3.sharedDefinitions/properties/resourceType"
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 12
+            },
+            "region": {
+              "$ref": "#/definitions/_3.sharedDefinitions/properties/regionName"
+            },
+            "suffix": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        },
+        "default2": {
+          "type": "object",
+          "properties": {
+            "pattern": {
+              "type": "string",
+              "allowedValues": [
+                "default2"
+              ]
+            },
+            "prefix": {
+              "$ref": "#/definitions/_3.sharedDefinitions/properties/resourceType"
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 12
+            },
+            "region": {
+              "$ref": "#/definitions/_3.sharedDefinitions/properties/regionName"
+            },
+            "environment": {
+              "$ref": "#/definitions/_3.sharedDefinitions/properties/environment"
+            },
+            "suffix": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        },
+        "extended1": {
+          "type": "object",
+          "properties": {
+            "pattern": {
+              "type": "string",
+              "allowedValues": [
+                "extended1"
+              ]
+            },
+            "organization": {
+              "type": "string",
+              "maxLength": 4
+            },
+            "prefix": {
+              "$ref": "#/definitions/_3.sharedDefinitions/properties/resourceType"
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 12
+            },
+            "region": {
+              "$ref": "#/definitions/_3.sharedDefinitions/properties/regionName"
+            },
+            "suffix": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        },
+        "extended2": {
+          "type": "object",
+          "properties": {
+            "pattern": {
+              "type": "string",
+              "allowedValues": [
+                "extended2"
+              ]
+            },
+            "organization": {
+              "type": "string",
+              "maxLength": 4
+            },
+            "prefix": {
+              "$ref": "#/definitions/_3.sharedDefinitions/properties/resourceType"
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 12
+            },
+            "region": {
+              "$ref": "#/definitions/_3.sharedDefinitions/properties/regionName"
+            },
+            "environment": {
+              "$ref": "#/definitions/_3.sharedDefinitions/properties/environment"
+            },
+            "suffix": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        }
+      },
+      "metadata": {
+        "description": "Defined available values for name patterns.",
+        "__bicep_imported_from!": {
+          "sourceTemplate": "../../../../lib/batName/definitions.bicep"
+        }
+      }
+    },
+    "_3.sharedDefinitions": {
+      "type": "object",
+      "properties": {
+        "namePattern": {
+          "type": "string",
+          "allowedValues": [
+            "default1",
+            "default2",
+            "extended1",
+            "extended2"
+          ]
+        },
+        "environment": {
+          "type": "string",
+          "allowedValues": [
+            "Development",
+            "Production",
+            "Staging",
+            "Test"
+          ]
+        },
+        "businessCriticality": {
+          "type": "string",
+          "allowedValues": [
+            "High",
+            "Low",
+            "Medium",
+            "Mission critical",
+            "Unit critical",
+            "Unsupported"
+          ]
+        },
+        "dataClassification": {
+          "type": "string",
+          "allowedValues": [
+            "Company",
+            "Confidential",
+            "Highly confidential",
+            "Public"
+          ]
+        },
+        "resourceType": {
+          "type": "string",
+          "allowedValues": [
+            "AI Search",
+            "AI Video Indexer",
+            "AI services multi-service account",
+            "AKS cluster",
+            "AKS system node pool",
+            "AKS user node pool",
+            "API management service instance",
+            "Action group",
+            "Alert processing rule",
+            "Analysis Services server",
+            "App Configuration store",
+            "App Service environment",
+            "App Service plan",
+            "Application Insights",
+            "Application gateway",
+            "Application security group (ASG)",
+            "Arc enabled Kubernetes cluster",
+            "Arc enabled server",
+            "Automation account",
+            "Availability set",
+            "Backup Vault name",
+            "Backup Vault policy",
+            "Bastion",
+            "Batch accounts",
+            "Blueprint (planned for deprecation)",
+            "Blueprint assignment (planned for deprecation)",
+            "Bot service",
+            "CDN endpoint",
+            "CDN profile",
+            "Cache for Redis instance",
+            "Cloud service",
+            "Communication Services",
+            "Computer vision",
+            "Connections",
+            "Container apps environment",
+            "Container apps",
+            "Container instance",
+            "Container registry",
+            "Content moderator",
+            "Content safety",
+            "Cosmos DB PostgreSQL cluster",
+            "Cosmos DB database",
+            "Cosmos DB for Apache Cassandra account",
+            "Cosmos DB for Apache Gremlin account",
+            "Cosmos DB for MongoDB account",
+            "Cosmos DB for NoSQL account",
+            "Cosmos DB for Table account",
+            "Custom vision (prediction)",
+            "Custom vision (training)",
+            "DNS forwarding ruleset",
+            "DNS private resolver inbound endpoint",
+            "DNS private resolver outbound endpoint",
+            "DNS private resolver",
+            "Data Explorer cluster database",
+            "Data Explorer cluster",
+            "Data Factory",
+            "Data Lake Analytics account",
+            "Data Lake Store account",
+            "Data collection endpoint",
+            "Data collection rule",
+            "Database Migration Service instance",
+            "Databricks workspace",
+            "Digital Twin instance",
+            "Disk encryption set",
+            "Document intelligence",
+            "Event Grid domain",
+            "Event Grid subscriptions",
+            "Event Grid system topic",
+            "Event Grid topic",
+            "Event Hubs namespace",
+            "Event hub",
+            "ExpressRoute circuit",
+            "ExpressRoute gateway",
+            "Face API",
+            "File share",
+            "Firewall policy",
+            "Firewall",
+            "Front Door (Standard/Premium) endpoint",
+            "Front Door (Standard/Premium) profile",
+            "Front Door (classic)",
+            "Front Door firewall policy",
+            "Function app",
+            "Gallery",
+            "HDInsight - HBase cluster",
+            "HDInsight - Hadoop cluster",
+            "HDInsight - Kafka cluster",
+            "HDInsight - ML Services cluster",
+            "HDInsight - Spark cluster",
+            "HDInsight - Storm cluster",
+            "Health Insights",
+            "Hosting environment",
+            "IP group",
+            "Image template",
+            "Immersive reader",
+            "Integration account",
+            "IoT hub",
+            "Key Vault Managed HSM",
+            "Key vault",
+            "Lab Services lab plan",
+            "Language service",
+            "Load Testing instance",
+            "Load balancer (external)",
+            "Load balancer (internal)",
+            "Load balancer rule",
+            "Local network gateway",
+            "Log Analytics query packs",
+            "Log Analytics workspace",
+            "Logic app",
+            "Machine Learning workspace",
+            "Managed Grafana",
+            "Managed disk (OS)",
+            "Managed disk (data)",
+            "Managed identity",
+            "Management group",
+            "Maps account",
+            "MariaDB database",
+            "MariaDB server",
+            "Microsoft Purview instance",
+            "Migrate project",
+            "MySQL database",
+            "NAT gateway",
+            "Network Watcher",
+            "Network interface (NIC)",
+            "Network security group (NSG) security rules",
+            "Network security group (NSG)",
+            "Notification Hubs namespace",
+            "Notification Hubs",
+            "OpenAI Service",
+            "PostgreSQL database",
+            "Power BI Embedded",
+            "Private Link",
+            "Private endpoint",
+            "Provisioning services certificate",
+            "Provisioning services",
+            "Proximity placement group",
+            "Public IP address prefix",
+            "Public IP address",
+            "Recovery Services vault",
+            "Resource group",
+            "Restore point collection",
+            "Route filter",
+            "Route server",
+            "Route table",
+            "SQL Database server",
+            "SQL Elastic Job agent",
+            "SQL Elastic Pool",
+            "SQL Managed Instance",
+            "SQL Server Stretch Database",
+            "SQL database",
+            "SSH key",
+            "Service Bus namespace",
+            "Service Bus queue",
+            "Service Bus topic subscription",
+            "Service Bus topic",
+            "Service Fabric cluster",
+            "Service Fabric managed cluster",
+            "Service endpoint policy",
+            "SignalR",
+            "Snapshot",
+            "Speech service",
+            "Static web app",
+            "StorSimple",
+            "Storage Sync Service name",
+            "Storage account",
+            "Stream Analytics",
+            "Subscription",
+            "Synapse Analytics SQL Dedicated Pool",
+            "Synapse Analytics Spark Pool",
+            "Synapse Analytics private link hub",
+            "Synapse Analytics workspaces",
+            "Template specs name",
+            "Time Series Insights environment",
+            "Traffic Manager profile",
+            "Translator",
+            "User defined route (UDR)",
+            "VM storage account",
+            "VPN Gateway",
+            "VPN connection",
+            "VPN site",
+            "Virtual WAN Hub",
+            "Virtual WAN",
+            "Virtual desktop application group",
+            "Virtual desktop host pool",
+            "Virtual desktop scaling plan",
+            "Virtual desktop workspace",
+            "Virtual machine maintenance configuration",
+            "Virtual machine scale set",
+            "Virtual machine",
+            "Virtual network gateway",
+            "Virtual network manager",
+            "Virtual network peering",
+            "Virtual network subnet",
+            "Virtual network",
+            "Web Application Firewall (WAF) policy rule group",
+            "Web Application Firewall (WAF) policy",
+            "Web app",
+            "WebPubSub"
+          ]
+        },
+        "regionName": {
+          "type": "string",
+          "allowedValues": [
+            "australiacentral",
+            "australiacentral2",
+            "australiaeast",
+            "australiasoutheast",
+            "brazilsouth",
+            "brazilsoutheast",
+            "canadacentral",
+            "canadaeast",
+            "centralindia",
+            "centralus",
+            "centraluseuap",
+            "eastasia",
+            "eastus",
+            "eastus2",
+            "eastus2euap",
+            "francecentral",
+            "francesouth",
+            "germanynorth",
+            "germanywestcentral",
+            "global",
+            "israelcentral",
+            "italynorth",
+            "japaneast",
+            "japanwest",
+            "koreacentral",
+            "koreasouth",
+            "mexicocentral",
+            "northcentralus",
+            "northeurope",
+            "norwayeast",
+            "norwaywest",
+            "polandcentral",
+            "qatarcentral",
+            "southafricanorth",
+            "southafricawest",
+            "southcentralus",
+            "southeastasia",
+            "southindia",
+            "spaincentral",
+            "swedencentral",
+            "switzerlandnorth",
+            "switzerlandwest",
+            "uaecentral",
+            "uaenorth",
+            "uksouth",
+            "ukwest",
+            "westcentralus",
+            "westeurope",
+            "westindia",
+            "westus",
+            "westus2",
+            "westus3"
+          ]
+        }
+      },
+      "metadata": {
+        "description": "Defined available values for data types.",
+        "__bicep_imported_from!": {
+          "sourceTemplate": "../../../../lib/batShared/definitions.bicep"
+        }
+      }
+    },
+    "genericTagSet": {
+      "type": "object",
+      "properties": {
+        "ApplicationName": {
+          "type": "string"
+        },
+        "BusinessCriticality": {
+          "$ref": "#/definitions/_3.sharedDefinitions/properties/businessCriticality"
+        },
+        "CostCenter": {
+          "type": "string"
+        },
+        "Creator": {
+          "type": "string"
+        },
+        "DataClassification": {
+          "$ref": "#/definitions/_3.sharedDefinitions/properties/dataClassification"
+        },
+        "DeploymentDate": {
+          "type": "string"
+        },
+        "Environment": {
+          "$ref": "#/definitions/_3.sharedDefinitions/properties/environment"
+        },
+        "Owner": {
+          "type": "string"
+        }
+      },
+      "metadata": {
+        "__bicep_imported_from!": {
+          "sourceTemplate": "../../../../lib/batTag/definitions.bicep"
+        }
+      }
+    },
+    "inputResourceName": {
+      "type": "object",
+      "discriminator": {
+        "propertyName": "pattern",
+        "mapping": {
+          "default1": {
+            "$ref": "#/definitions/_1.patternDefinitions/properties/default1"
+          },
+          "default2": {
+            "$ref": "#/definitions/_1.patternDefinitions/properties/default2"
+          },
+          "extended1": {
+            "$ref": "#/definitions/_1.patternDefinitions/properties/extended1"
+          },
+          "extended2": {
+            "$ref": "#/definitions/_1.patternDefinitions/properties/extended2"
+          }
+        }
+      },
+      "metadata": {
+        "description": "Defined available values for resource name input object.",
+        "__bicep_imported_from!": {
+          "sourceTemplate": "../../../../lib/batName/definitions.bicep"
+        }
+      }
+    },
+    "sharedParameters": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "$ref": "#/definitions/_3.sharedDefinitions/properties/regionName"
+        },
+        "organization": {
+          "type": "string",
+          "maxLength": 12
+        },
+        "organizationAbbreviation": {
+          "type": "string",
+          "maxLength": 4
+        },
+        "creator": {
+          "type": "string"
+        }
+      },
+      "metadata": {
+        "__bicep_imported_from!": {
+          "sourceTemplate": "../../../../lib/batTag/definitions.bicep"
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "namespace": "_2",
+      "members": {
+        "getEnvironmentAbbreviation": {
+          "parameters": [],
+          "output": {
+            "type": "object",
+            "value": {
+              "Production": "prod",
+              "Staging": "stage",
+              "Test": "test",
+              "Development": "dev"
+            }
+          },
+          "metadata": {
+            "description": "Selects the appropriate abbreviation for environments from library file.",
+            "__bicep_imported_from!": {
+              "sourceTemplate": "../../../../lib/batName/helper.bicep"
+            }
+          }
+        },
+        "getRegionAbbreviation": {
+          "parameters": [],
+          "output": {
+            "type": "object",
+            "value": {
+              "global": "global",
+              "eastus": "use",
+              "eastus2": "use2",
+              "southcentralus": "ussc",
+              "westus2": "usw2",
+              "westus3": "usw3",
+              "australiaeast": "aue",
+              "southeastasia": "asse",
+              "northeurope": "eun",
+              "swedencentral": "sec",
+              "uksouth": "uks",
+              "westeurope": "euw",
+              "centralus": "usc",
+              "southafricanorth": "zan",
+              "centralindia": "inc",
+              "eastasia": "ase",
+              "japaneast": "jpe",
+              "koreacentral": "koc",
+              "canadacentral": "cac",
+              "francecentral": "frc",
+              "germanywestcentral": "dewc",
+              "italynorth": "itn",
+              "norwayeast": "nwe",
+              "polandcentral": "poc",
+              "spaincentral": "esc",
+              "switzerlandnorth": "swn",
+              "mexicocentral": "mxc",
+              "uaenorth": "aen",
+              "brazilsouth": "brs",
+              "israelcentral": "isc",
+              "qatarcentral": "qac",
+              "northcentralus": "usnc",
+              "westus": "usw",
+              "japanwest": "jpw",
+              "centraluseuap": "usc",
+              "eastus2euap": "use2",
+              "westcentralus": "uswc",
+              "southafricawest": "zaw",
+              "australiacentral": "auc",
+              "australiacentral2": "auc2",
+              "australiasoutheast": "ause",
+              "koreasouth": "kos",
+              "southindia": "ins",
+              "westindia": "inw",
+              "canadaeast": "cae",
+              "francesouth": "frs",
+              "germanynorth": "den",
+              "norwaywest": "now",
+              "switzerlandwest": "sww",
+              "ukwest": "ukw",
+              "uaecentral": "aec",
+              "brazilsoutheast": "brse"
+            }
+          },
+          "metadata": {
+            "description": "Selects the appropriate abbreviation for locations from library file.",
+            "__bicep_imported_from!": {
+              "sourceTemplate": "../../../../lib/batName/helper.bicep"
+            }
+          }
+        },
+        "getResourceTypeAbbreviation": {
+          "parameters": [],
+          "output": {
+            "type": "object",
+            "value": {
+              "AI Search": "srch",
+              "AI services multi-service account": "aisa",
+              "AI Video Indexer": "avi",
+              "Machine Learning workspace": "mlw",
+              "OpenAI Service": "oai",
+              "Bot service": "bot",
+              "Computer vision": "cv",
+              "Content moderator": "cm",
+              "Content safety": "cs",
+              "Custom vision (prediction)": "cstv",
+              "Custom vision (training)": "cstvt",
+              "Document intelligence": "di",
+              "Face API": "face",
+              "Health Insights": "hi",
+              "Immersive reader": "ir",
+              "Language service": "lang",
+              "Speech service": "spch",
+              "Translator": "trsl",
+              "Analysis Services server": "as",
+              "Databricks workspace": "dbw",
+              "Data Explorer cluster": "dec",
+              "Data Explorer cluster database": "dedb",
+              "Data Factory": "adf",
+              "Digital Twin instance": "dt",
+              "Stream Analytics": "asa",
+              "Synapse Analytics private link hub": "synplh",
+              "Synapse Analytics SQL Dedicated Pool": "syndp",
+              "Synapse Analytics Spark Pool": "synsp",
+              "Synapse Analytics workspaces": "synw",
+              "Data Lake Store account": "dls",
+              "Data Lake Analytics account": "dla",
+              "Event Hubs namespace": "evhns",
+              "Event hub": "evh",
+              "Event Grid domain": "evgd",
+              "Event Grid subscriptions": "evgs",
+              "Event Grid topic": "evgt",
+              "Event Grid system topic": "egst",
+              "HDInsight - Hadoop cluster": "hadoop",
+              "HDInsight - HBase cluster": "hbase",
+              "HDInsight - Kafka cluster": "kafka",
+              "HDInsight - Spark cluster": "spark",
+              "HDInsight - Storm cluster": "storm",
+              "HDInsight - ML Services cluster": "mls",
+              "IoT hub": "iot",
+              "Provisioning services": "provs",
+              "Provisioning services certificate": "pcert",
+              "Power BI Embedded": "pbi",
+              "Time Series Insights environment": "tsi",
+              "App Service environment": "ase",
+              "App Service plan": "asp",
+              "Load Testing instance": "lt",
+              "Availability set": "avail",
+              "Arc enabled server": "arcs",
+              "Arc enabled Kubernetes cluster": "arck",
+              "Batch accounts": "ba",
+              "Cloud service": "cld",
+              "Communication Services": "acs",
+              "Disk encryption set": "des",
+              "Function app": "func",
+              "Gallery": "gal",
+              "Hosting environment": "host",
+              "Image template": "it",
+              "Managed disk (OS)": "osdisk",
+              "Managed disk (data)": "disk",
+              "Notification Hubs": "ntf",
+              "Notification Hubs namespace": "ntfns",
+              "Proximity placement group": "ppg",
+              "Restore point collection": "rpc",
+              "Snapshot": "snap",
+              "Static web app": "stapp",
+              "Virtual machine": "vm",
+              "Virtual machine scale set": "vmss",
+              "Virtual machine maintenance configuration": "mc",
+              "VM storage account": "stvm",
+              "Web app": "app",
+              "AKS cluster": "aks",
+              "AKS system node pool": "npsys",
+              "AKS user node pool": "np",
+              "Container apps": "ca",
+              "Container apps environment": "cae",
+              "Container registry": "cr",
+              "Container instance": "ci",
+              "Service Fabric cluster": "sf",
+              "Service Fabric managed cluster": "sfmc",
+              "Cosmos DB database": "cosmos",
+              "Cosmos DB for Apache Cassandra account": "coscas",
+              "Cosmos DB for MongoDB account": "cosmon",
+              "Cosmos DB for NoSQL account": "cosno",
+              "Cosmos DB for Table account": "costab",
+              "Cosmos DB for Apache Gremlin account": "cosgrm",
+              "Cosmos DB PostgreSQL cluster": "cospos",
+              "Cache for Redis instance": "redis",
+              "SQL Database server": "sql",
+              "SQL database": "sqldb",
+              "SQL Elastic Job agent": "sqlja",
+              "SQL Elastic Pool": "sqlep",
+              "MariaDB server": "maria",
+              "MariaDB database": "mariadb",
+              "MySQL database": "mysql",
+              "PostgreSQL database": "psql",
+              "SQL Server Stretch Database": "sqlstrdb",
+              "SQL Managed Instance": "sqlmi",
+              "App Configuration store": "appcs",
+              "Maps account": "map",
+              "SignalR": "sigr",
+              "WebPubSub": "wps",
+              "Managed Grafana": "amg",
+              "API management service instance": "apim",
+              "Integration account": "ia",
+              "Logic app": "logic",
+              "Service Bus namespace": "sbns",
+              "Service Bus queue": "sbq",
+              "Service Bus topic": "sbt",
+              "Service Bus topic subscription": "sbts",
+              "Automation account": "aa",
+              "Application Insights": "appi",
+              "Action group": "ag",
+              "Alert processing rule": "apr",
+              "Data collection rule": "dcr",
+              "Data collection endpoint": "dce",
+              "Log Analytics workspace": "laws",
+              "Log Analytics query packs": "pack",
+              "Management group": "mg",
+              "Microsoft Purview instance": "pview",
+              "Resource group": "rg",
+              "Template specs name": "ts",
+              "Migrate project": "migr",
+              "Database Migration Service instance": "dms",
+              "Recovery Services vault": "rsv",
+              "Application gateway": "agw",
+              "Application security group (ASG)": "asg",
+              "CDN profile": "cdnp",
+              "CDN endpoint": "cdne",
+              "Connections": "con",
+              "DNS forwarding ruleset": "dnsfrs",
+              "DNS private resolver": "dnspr",
+              "DNS private resolver inbound endpoint": "in",
+              "DNS private resolver outbound endpoint": "out",
+              "Firewall": "afw",
+              "Firewall policy": "afwp",
+              "ExpressRoute circuit": "erc",
+              "ExpressRoute gateway": "ergw",
+              "Front Door (Standard/Premium) profile": "afd",
+              "Front Door (Standard/Premium) endpoint": "fde",
+              "Front Door firewall policy": "fdfp",
+              "Front Door (classic)": "afd",
+              "IP group": "ipg",
+              "Load balancer (internal)": "lbi",
+              "Load balancer (external)": "lbe",
+              "Load balancer rule": "rule",
+              "Local network gateway": "lgw",
+              "NAT gateway": "nat",
+              "Network interface (NIC)": "nic",
+              "Network security group (NSG)": "nsg",
+              "Network security group (NSG) security rules": "nsgsr",
+              "Network Watcher": "nw",
+              "Private Link": "pl",
+              "Private endpoint": "pep",
+              "Public IP address": "pip",
+              "Public IP address prefix": "ippre",
+              "Route filter": "rf",
+              "Route server": "rtserv",
+              "Route table": "rt",
+              "Service endpoint policy": "se",
+              "Traffic Manager profile": "traf",
+              "User defined route (UDR)": "udr",
+              "Virtual network": "vnet",
+              "Virtual network gateway": "vgw",
+              "Virtual network manager": "vnm",
+              "Virtual network peering": "peer",
+              "Virtual network subnet": "snet",
+              "Virtual WAN": "vwan",
+              "Virtual WAN Hub": "vhub",
+              "Bastion": "bas",
+              "Key vault": "kv",
+              "Key Vault Managed HSM": "kvmhsm",
+              "Managed identity": "id",
+              "SSH key": "sshkey",
+              "VPN Gateway": "vpng",
+              "VPN connection": "vcn",
+              "VPN site": "vst",
+              "Web Application Firewall (WAF) policy": "waf",
+              "Web Application Firewall (WAF) policy rule group": "wafrg",
+              "StorSimple": "ssimp",
+              "Backup Vault name": "bvault",
+              "Backup Vault policy": "bkpol",
+              "File share": "share",
+              "Storage account": "st",
+              "Storage Sync Service name": "sss",
+              "Lab Services lab plan": "lp",
+              "Virtual desktop host pool": "vdpool",
+              "Virtual desktop application group": "vdag",
+              "Virtual desktop workspace": "vdws",
+              "Virtual desktop scaling plan": "vdscaling",
+              "Subscription": "sub"
+            }
+          },
+          "metadata": {
+            "description": "Selects the appropriate abbreviation for resource types from library file.",
+            "__bicep_imported_from!": {
+              "sourceTemplate": "../../../../lib/batName/helper.bicep"
+            }
+          }
+        },
+        "setEnvironmentAbbreviation": {
+          "parameters": [
+            {
+              "type": "string",
+              "name": "environment"
+            }
+          ],
+          "output": {
+            "type": "string",
+            "value": "[_2.getEnvironmentAbbreviation()[parameters('environment')]]"
+          },
+          "metadata": {
+            "description": "Calls the helper function to select abbreviation for environments.",
+            "__bicep_imported_from!": {
+              "sourceTemplate": "../../../../lib/batName/helper.bicep"
+            }
+          }
+        },
+        "setRegionAbbreviation": {
+          "parameters": [
+            {
+              "type": "string",
+              "name": "region"
+            }
+          ],
+          "output": {
+            "type": "string",
+            "value": "[_2.getRegionAbbreviation()[parameters('region')]]"
+          },
+          "metadata": {
+            "description": "Calls the helper function to select abbreviation for locations.",
+            "__bicep_imported_from!": {
+              "sourceTemplate": "../../../../lib/batName/helper.bicep"
+            }
+          }
+        },
+        "setResourceName": {
+          "parameters": [
+            {
+              "type": "object",
+              "name": "input"
+            }
+          ],
+          "output": {
+            "type": "object",
+            "value": {
+              "default1": "[toLower(if(contains(parameters('input'), 'suffix'), format('{0}-{1}-{2}-{3}', _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(parameters('input').region), parameters('input').suffix), format('{0}-{1}-{2}', _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(parameters('input').region))))]",
+              "default2": "[toLower(if(contains(parameters('input'), 'suffix'), format('{0}-{1}-{2}-{3}-{4}', _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(parameters('input').region), _2.setEnvironmentAbbreviation(coalesce(tryGet(parameters('input'), 'environment'), 'Test')), parameters('input').suffix), format('{0}-{1}-{2}-{3}', _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(parameters('input').region), _2.setEnvironmentAbbreviation(coalesce(tryGet(parameters('input'), 'environment'), 'Test')))))]",
+              "extended1": "[toLower(if(contains(parameters('input'), 'suffix'), format('{0}-{1}-{2}-{3}-{4}', tryGet(parameters('input'), 'organization'), _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(coalesce(tryGet(parameters('input'), 'region'), 'global')), parameters('input').suffix), format('{0}-{1}-{2}-{3}', tryGet(parameters('input'), 'organization'), _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(coalesce(parameters('input').region, 'global')))))]",
+              "extended2": "[toLower(if(contains(parameters('input'), 'suffix'), format('{0}-{1}-{2}-{3}-{4}-{5}', tryGet(parameters('input'), 'organization'), _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(parameters('input').region), _2.setEnvironmentAbbreviation(coalesce(tryGet(parameters('input'), 'environment'), 'Test')), parameters('input').suffix), format('{0}-{1}-{2}-{3}-{4}', tryGet(parameters('input'), 'organization'), _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(parameters('input').region), _2.setEnvironmentAbbreviation(coalesce(tryGet(parameters('input'), 'environment'), 'Test')))))]"
+            }
+          },
+          "metadata": {
+            "description": "Selects the approbiate name pattern for default name generation.",
+            "__bicep_imported_from!": {
+              "sourceTemplate": "../../../../lib/batName/helper.bicep"
+            }
+          }
+        },
+        "setResourceTypeAbbreviation": {
+          "parameters": [
+            {
+              "type": "string",
+              "name": "resourceType"
+            }
+          ],
+          "output": {
+            "type": "string",
+            "value": "[_2.getResourceTypeAbbreviation()[parameters('resourceType')]]"
+          },
+          "metadata": {
+            "description": "Calls the helper function to select abbreviation for resource types.",
+            "__bicep_imported_from!": {
+              "sourceTemplate": "../../../../lib/batName/helper.bicep"
+            }
+          }
+        },
+        "setSpecialResourceName": {
+          "parameters": [
+            {
+              "type": "object",
+              "name": "input"
+            }
+          ],
+          "output": {
+            "type": "object",
+            "value": {
+              "default1": "[toLower(if(contains(parameters('input'), 'suffix'), format('{0}{1}{2}{3}', _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(parameters('input').region), parameters('input').suffix), format('{0}{1}{2}', _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(parameters('input').region))))]",
+              "default2": "[toLower(if(contains(parameters('input'), 'suffix'), format('{0}{1}{2}{3}{4}', _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(parameters('input').region), _2.setEnvironmentAbbreviation(coalesce(tryGet(parameters('input'), 'environment'), 'Test')), parameters('input').suffix), format('{0}{1}{2}{3}', _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(parameters('input').region), _2.setEnvironmentAbbreviation(coalesce(tryGet(parameters('input'), 'environment'), 'Test')))))]",
+              "extended1": "[toLower(if(contains(parameters('input'), 'suffix'), format('{0}{1}{2}{3}{4}', tryGet(parameters('input'), 'organization'), _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(coalesce(tryGet(parameters('input'), 'region'), 'global')), parameters('input').suffix), format('{0}{1}{2}{3}', tryGet(parameters('input'), 'organization'), _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(coalesce(parameters('input').region, 'global')))))]",
+              "extended2": "[toLower(if(contains(parameters('input'), 'suffix'), format('{0}{1}{2}{3}{4}{5}', tryGet(parameters('input'), 'organization'), _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(parameters('input').region), _2.setEnvironmentAbbreviation(coalesce(tryGet(parameters('input'), 'environment'), 'Test')), parameters('input').suffix), format('{0}{1}{2}{3}{4}', tryGet(parameters('input'), 'organization'), _2.setResourceTypeAbbreviation(parameters('input').prefix), parameters('input').name, _2.setRegionAbbreviation(parameters('input').region), _2.setEnvironmentAbbreviation(coalesce(tryGet(parameters('input'), 'environment'), 'Test')))))]"
+            }
+          },
+          "metadata": {
+            "description": "Selects the approbiate name pattern for special name generation.",
+            "__bicep_imported_from!": {
+              "sourceTemplate": "../../../../lib/batName/helper.bicep"
+            }
+          }
+        }
+      }
+    },
+    {
+      "namespace": "__bicep",
+      "members": {
+        "newPolicyAssignmentName": {
+          "parameters": [
+            {
+              "type": "string",
+              "name": "guidValue"
+            }
+          ],
+          "output": {
+            "type": "string",
+            "value": "[format('pa-{0}', substring(guid(parameters('guidValue')), 0, 18))]"
+          },
+          "metadata": {
+            "description": "Creates a new guid for policy assignments based on string input with fixed prefix.",
+            "__bicep_imported_from!": {
+              "sourceTemplate": "../../../../lib/batName/shared.bicep"
+            }
+          }
+        },
+        "newPolicyDefinitionName": {
+          "parameters": [
+            {
+              "type": "string",
+              "name": "guidValue"
+            }
+          ],
+          "output": {
+            "type": "string",
+            "value": "[format('pd-{0}', substring(guid(parameters('guidValue')), 0, 18))]"
+          },
+          "metadata": {
+            "description": "Creates a new guid for policy definitions based on string input with fixed prefix.",
+            "__bicep_imported_from!": {
+              "sourceTemplate": "../../../../lib/batName/shared.bicep"
+            }
+          }
+        },
+        "newResourceName": {
+          "parameters": [
+            {
+              "$ref": "#/definitions/inputResourceName",
+              "name": "input"
+            }
+          ],
+          "output": {
+            "type": "string",
+            "value": "[_2.setResourceName(parameters('input'))[string(parameters('input').pattern)]]"
+          },
+          "metadata": {
+            "description": "Calls the helper function to generate a new default resource name based on input.",
+            "__bicep_imported_from!": {
+              "sourceTemplate": "../../../../lib/batName/shared.bicep"
+            }
+          }
+        },
+        "newSpecialResourceName": {
+          "parameters": [
+            {
+              "$ref": "#/definitions/inputResourceName",
+              "name": "input"
+            }
+          ],
+          "output": {
+            "type": "string",
+            "value": "[_2.setSpecialResourceName(parameters('input'))[string(parameters('input').pattern)]]"
+          },
+          "metadata": {
+            "description": "Calls the helper function to generate a new special resource name based on input.",
+            "__bicep_imported_from!": {
+              "sourceTemplate": "../../../../lib/batName/shared.bicep"
+            }
+          }
+        },
+        "newUniqueResourceName": {
+          "parameters": [
+            {
+              "$ref": "#/definitions/_3.sharedDefinitions/properties/resourceType",
+              "name": "resourceType"
+            },
+            {
+              "type": "string",
+              "name": "resourceName"
+            }
+          ],
+          "output": {
+            "type": "string",
+            "value": "[format('{0}{1}', _2.setResourceTypeAbbreviation(parameters('resourceType')), uniqueString(parameters('resourceName')), 0, 14)]"
+          },
+          "metadata": {
+            "description": "Generate a new unique resource name based on input.",
+            "__bicep_imported_from!": {
+              "sourceTemplate": "../../../../lib/batName/shared.bicep"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "parameters": {
+    "location": {
+      "type": "string"
+    },
+    "userName": {
+      "type": "string"
+    },
+    "applicationName": {
+      "type": "string",
+      "maxLength": 12
+    },
+    "moduleResourceName": {
+      "$ref": "#/definitions/inputResourceName",
+      "defaultValue": {
+        "name": "[substring(replace(replace(parameters('applicationName'), '-', ''), ' ', ''), 0, 12)]",
+        "pattern": "default1",
+        "prefix": "Resource group",
+        "region": "[parameters('location')]"
+      },
+      "metadata": {
+        "description": "Set values for module name object."
+      }
+    },
+    "moduleResourceTags": {
+      "$ref": "#/definitions/genericTagSet",
+      "defaultValue": {
+        "ApplicationName": "[parameters('applicationName')]",
+        "BusinessCriticality": "Unsupported",
+        "CostCenter": "0000",
+        "Creator": "[parameters('userName')]",
+        "DataClassification": "Company",
+        "DeploymentDate": "[utcNow('dd.MM.yyyy')]",
+        "Environment": "Production",
+        "Owner": "[parameters('userName')]"
+      },
+      "metadata": {
+        "description": "Set values for module tag object."
+      }
+    }
+  },
+  "resources": {
+    "resourceGroup": {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2024-03-01",
+      "name": "[__bicep.newResourceName(parameters('moduleResourceName'))]",
+      "location": "[parameters('location')]",
+      "tags": "[parameters('moduleResourceTags')]"
+    }
+  },
+  "outputs": {
+    "moduleOutput": {
+      "type": "object",
+      "value": {
+        "resourceGroupId": "[subscriptionResourceId('Microsoft.Resources/resourceGroups', __bicep.newResourceName(parameters('moduleResourceName')))]",
+        "moduleResourceName": "[__bicep.newResourceName(parameters('moduleResourceName'))]"
+      }
+    }
+  }
+}

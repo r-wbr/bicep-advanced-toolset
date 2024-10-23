@@ -1,4 +1,4 @@
-  Production: prod
-  Staging: stage
-  Test: test
-  Development: dev
+Production: prod
+Staging: stage
+Test: test
+Development: dev

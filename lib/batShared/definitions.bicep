@@ -1,6 +1,3 @@
-metadata author = 'rwbr@outlook.de'
-metadata repository = 'https://github.com/r-wbr/bicep-advanced-toolset'
-
 @description('Defined available values for data types.')
 @export()
 type sharedDefinitions = {
@@ -26,7 +23,7 @@ type sharedDefinitions = {
     | 'Company' 
     | 'Confidential' 
     | 'Highly confidential'
-  resourceTypes:
+  resourceType:
     | 'AI Search'
     | 'AI services multi-service account'
     | 'AI Video Indexer'
@@ -224,7 +221,7 @@ type sharedDefinitions = {
     | 'Virtual desktop workspace'
     | 'Virtual desktop scaling plan'
     | 'Subscription'
-  regionNames:
+  regionName:
     | 'global'
     | 'eastus'
     | 'eastus2'
@@ -277,81 +274,4 @@ type sharedDefinitions = {
     | 'ukwest'
     | 'uaecentral'
     | 'brazilsoutheast'
-}
-
-@description('Defined available values for resource tags input object.')
-@export()
-type inputResourceTag = {
-  ApplicationName: string
-  BusinessCriticality: sharedDefinitions.businessCriticality
-  CostCenter: string
-  Creator: string
-  DataClassification: sharedDefinitions.dataClassification
-  DeploymentDate: string
-  Environment: sharedDefinitions.environment
-  Owner: string
-}
-
-@description('Defined available values for name patterns.')
-type patternDefinitions = {
-  default1: {
-    pattern: 'default1'
-    prefix: sharedDefinitions.resourceTypes    
-    @maxLength(12)
-    name: string
-    region: sharedDefinitions.regionNames
-    suffix: string?
-  }
-  default2: {
-    pattern: 'default2'
-    prefix: sharedDefinitions.resourceTypes      
-    @maxLength(12)
-    name: string
-    region: sharedDefinitions.regionNames
-    environment: sharedDefinitions.environment
-    suffix: string?
-  }
-  extended1: {
-    pattern: 'extended1'
-    @maxLength(4)
-    organization: string
-    prefix: sharedDefinitions.resourceTypes      
-    @maxLength(12)
-    name: string
-    region: sharedDefinitions.regionNames
-    suffix: string?
-  }
-  extended2: {
-    pattern: 'extended2'
-    @maxLength(4)
-    organization: string
-    prefix: sharedDefinitions.resourceTypes      
-    @maxLength(12)
-    name: string
-    region: sharedDefinitions.regionNames
-    environment: sharedDefinitions.environment
-    suffix: string?
-  }
-}
-
-@description('Defined available values for resource name input object.')
-@export()
-@discriminator('pattern')
-type inputResourceName =
-  | patternDefinitions.default1
-  | patternDefinitions.default2
-  | patternDefinitions.extended1
-  | patternDefinitions.extended2
-
-@export()
-type sharedParameters = {
-  @description('Primary location for deployment of resources.')
-  location: sharedDefinitions.regionNames
-  @description('Full name of the customer or organization.')
-  @maxLength(12)
-  organization: string
-  @description('Abbreviation of the organization or customer name.')
-  @maxLength(4)
-  organizationAbbreviation: string
-  creator: string
 }

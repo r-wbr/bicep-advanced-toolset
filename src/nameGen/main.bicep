@@ -3,9 +3,8 @@ metadata repository = 'https://github.com/r-wbr/bicep-advanced-toolset'
 
 @description('Import data types for name generator.')
 import { 
-  sharedDefinitions
   inputResourceName 
-} from '../../lib/nameGen/definitions.bicep'
+} from '../../lib/batName/definitions.bicep'
 
 @description('Import functions for name generator.')
 import {
@@ -14,7 +13,7 @@ import {
   newSpecialResourceName
   newPolicyDefinitionName
   newPolicyAssignmentName 
-} from '../../lib/nameGen/shared.bicep'
+} from '../../lib/batName/shared.bicep'
 
 param exampleNameDefault1 inputResourceName = {
   name: 'default1'

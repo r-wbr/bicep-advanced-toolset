@@ -1,0 +1,56 @@
+{
+    "title": "Workload",
+    "description": "Archetype defining the properties of the associated object.",
+    "type": "Management Group",
+    "parent": "mg-organization",
+    "children": {
+        "allowed": true,
+        "types": [
+            "Microsoft.Management/managementGroups",
+            "Microsoft.Management/managementGroups/subscriptions"
+        ]
+    },
+    "properties": {
+        "name": "mg-workload",
+        "displayName": "Workload",
+        "primaryLocation": "westeurope",
+        "allowedLocations": [
+            "westeurope",
+            "northeurope"
+        ],
+        "restrictedResourceTypes": [
+            "Microsoft.Network/virtualWans",
+            "Microsoft.Network/virtualHubs",
+            "Microsoft.Network/expressRouteCircuits",
+            "Microsoft.Network/expressRouteGateways",
+            "Microsoft.Network/azureFirewalls",
+            "Microsoft.Network/firewallPolicies",
+            "Microsoft.Network/virtualNetworkGateways",
+            "Microsoft.Network/vpnGateways",
+            "Microsoft.Network/publicIPAddresses",
+            "Microsoft.Network/publicIPPrefixes",
+            "Microsoft.AAD/domainServices",
+            "Microsoft.ManagedIdentity/userAssignedIdentities",
+            "Microsoft.Insights/privateLinkScopes",
+            "Microsoft.Migrate/migrateProjects"
+        ],
+        "serviceHealthAlerts": {
+            "alertTypes": [
+                "Incident",
+                "Security",
+                "Advisory",
+                "Maintenance"
+            ],
+            "alertState": "enabled"
+        },
+        "encryption": {
+            "type": "SS-PMK"
+        },
+        "backup": {
+            "enabled": false
+        },
+        "network": {
+            "addressRange": "10.0.0.1/22"
+        }
+    }
+}

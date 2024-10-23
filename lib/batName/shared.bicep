@@ -1,10 +1,9 @@
 metadata author = 'rwbr@outlook.de'
 metadata repository = 'https://github.com/r-wbr/bicep-advanced-toolset'
 
-import { 
-  sharedDefinitions
-  inputResourceName
- } from 'definitions.bicep'
+import { sharedDefinitions } from '../batShared/definitions.bicep'
+
+import { inputResourceName } from 'definitions.bicep'
 import {
   setResourceName
   setSpecialResourceName
@@ -23,7 +22,7 @@ func newSpecialResourceName(input inputResourceName) string => setSpecialResourc
 
 @description('Generate a new unique resource name based on input.')
 @export()
-func newUniqueResourceName(resourceType sharedDefinitions.resourceTypes, resourceName string) string =>
+func newUniqueResourceName(resourceType  sharedDefinitions.resourceType, resourceName string) string =>
   format('{0}{1}', setResourceTypeAbbreviation(resourceType), uniqueString(resourceName), 0, 14)
 
 @description('Creates a new guid for policy definitions based on string input with fixed prefix.')

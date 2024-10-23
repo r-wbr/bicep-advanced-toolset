@@ -1,7 +1,7 @@
 metadata author = 'rwbr@outlook.de'
 metadata repository = 'https://github.com/r-wbr/bicep-advanced-toolset'
 
-import { sharedDefinitions } from 'definitions.bicep'
+import { sharedDefinitions } from '../batShared/definitions.bicep'
 
 @description('Calls the helper function to select abbreviation for resource types.')
 @export()
@@ -12,7 +12,7 @@ func getResourceTypeAbbreviation() object => loadYamlContent('../resourceTypeAbb
 
 @description('Calls the helper function to select abbreviation for locations.')
 @export()
-func setRegionAbbreviation(region sharedDefinitions.regionNames) string => getRegionAbbreviation()[region]
+func setRegionAbbreviation(region string) string => getRegionAbbreviation()[region]
 
 @description('Selects the appropriate abbreviation for locations from library file.')
 func getRegionAbbreviation() object => loadYamlContent('../regionAbbreviations.yaml')

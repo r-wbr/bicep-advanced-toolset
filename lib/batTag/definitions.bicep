@@ -1,8 +1,8 @@
-import { sharedDefinitions } from '../batShared/definitions.bicep'
+import { batDefinitions } from '../batShared/definitions.bicep'
 
 @export()
 type sharedParameters = {
-  location: sharedDefinitions.regionName
+  location: batDefinitions.regionName
   @maxLength(12)
   organization: string
   @maxLength(4)
@@ -13,26 +13,25 @@ type sharedParameters = {
 @export()
 type genericTagSet = {
     ApplicationName: string
-    BusinessCriticality: sharedDefinitions.businessCriticality
+    BusinessCriticality: batDefinitions.businessCriticality
     CostCenter: string
     Creator: string
-    DataClassification: sharedDefinitions.dataClassification
+    DataClassification: batDefinitions.dataClassification
     DeploymentDate: string
-    Environment: sharedDefinitions.environment
+    Environment: batDefinitions.environment
     Owner: string
   }
 
 @export()
 type virtualMachineTagSet = {
     ApplicationName: string
-    BusinessCriticality: sharedDefinitions.businessCriticality
+    BusinessCriticality: batDefinitions.businessCriticality
     CostCenter: string
     Creator: string
-    DataClassification: sharedDefinitions.dataClassification
+    DataClassification: batDefinitions.dataClassification
     DeploymentDate: string
-    Environment: sharedDefinitions.environment
+    Environment: batDefinitions.environment
     Owner: string
     Backup: bool
     Monitoring: bool
   }
-

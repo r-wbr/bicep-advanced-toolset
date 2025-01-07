@@ -1,6 +1,6 @@
 @description('Defined available values for data types.')
 @export()
-type sharedDefinitions = {
+type batDefinitions = {
   namePattern:
     | 'default1' 
     | 'default2' 

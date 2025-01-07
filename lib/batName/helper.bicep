@@ -1,7 +1,7 @@
 metadata author = 'rwbr@outlook.de'
 metadata repository = 'https://github.com/r-wbr/bicep-advanced-toolset'
 
-import { sharedDefinitions } from '../batShared/definitions.bicep'
+import { batDefinitions } from '../batShared/definitions.bicep'
 
 @description('Calls the helper function to select abbreviation for resource types.')
 @export()

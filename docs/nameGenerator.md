@@ -4,16 +4,16 @@ The name generator includes four different naming patterns for defining resource
 
 # Usage
 
-Functions to generate a default or special name need a specific `inputResourceName` object, which defines the available values for the specific name pattern.
+Functions to generate a default or special name need a specific `batResourceName` object, which defines the available values for the specific name pattern.
 
 ```bicep
 @description('Calls the helper function to generate a new default resource name based on input.')
 @export()
-func newResourceName(input inputResourceName) string => setResourceName(input)[(string(input.pattern))]
+func newResourceName(input batResourceName) string => setResourceName(input)[(string(input.pattern))]
 
 @description('Calls the helper function to generate a new special resource name based on input.')
 @export()
-func newSpecialResourceName(input inputResourceName) string => setSpecialResourceName(input)[(string(input.pattern))]
+func newSpecialResourceName(input batResourceName) string => setSpecialResourceName(input)[(string(input.pattern))]
 ```
 
 Functions to generate a unique name, or names for policy definitions and assignments dont need an input object.
@@ -41,7 +41,7 @@ func newPolicyAssignmentName(guidValue string) string => 'pa-${substring(guid(gu
 @description('Import data types for name generator.')
 import { 
   sharedDefinitions
-  inputResourceName 
+  batResourceName 
 } from '../../lib/nameGen/definitions.bicep'
 
 @description('Import functions for name generator.')
@@ -57,14 +57,14 @@ import {
 2. Define the input objects
 
 ```bicep
-param exampleNameDefault1 inputResourceName = {
+param exampleNameDefault1 batResourceName = {
   name: 'default1'
   pattern: 'default1'
   prefix: 'Resource group'
   region: 'westeurope'
 }
 
-param exampleNameDefault2 inputResourceName = {
+param exampleNameDefault2 batResourceName = {
   name: 'default2'
   environment: 'Test'
   pattern: 'default2'
@@ -72,7 +72,7 @@ param exampleNameDefault2 inputResourceName = {
   region: 'westeurope'
 }
 
-param exampleNameExtended1 inputResourceName = {
+param exampleNameExtended1 batResourceName = {
   name: 'extended1'
   organization: 'bat'
   pattern: 'extended1'
@@ -80,7 +80,7 @@ param exampleNameExtended1 inputResourceName = {
   region: 'westeurope'
 }
 
-param exampleNameExtended2 inputResourceName = {
+param exampleNameExtended2 batResourceName = {
   name: 'extended2'
   environment: 'Test'
   organization: 'bat'

@@ -9,6 +9,7 @@ The Azure community provides a variety of documents and tools to streamline the 
 
 # Features
 
+- Helper functions to extract resource name, resource group name and subscription from a resource id.
 - Name generator with the possibility to generate basic names for resources, or special names for storage accounts.
 - Integrated name patterns for different requirements, which can be extended with custom patterns.
 - Fully written in 💪 Bicep.
